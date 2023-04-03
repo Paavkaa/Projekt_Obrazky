@@ -23,6 +23,7 @@ if(isset($_POST['submit']))
     if ($result->num_rows > 0) {
         echo '<script>alert("Tento nickname již existuje. Zvolte prosím jiný.");</script>'; // Zobrazení varování, pokud již existuje uživatel se zadaným nickname
     }
+
     // Vložení nickname do databáze
     $email = $_POST['email'];
     $sql = "SELECT * FROM user WHERE mail = '$email'";
@@ -41,7 +42,7 @@ if(isset($_POST['submit']))
         // Kontrola, zda heslo splňuje minimální délku
         if (strlen($password) < 8) {
             echo '<script>document.getElementById("passwordLength").style.display = "inline";</script>'; // Zobrazení varování pro krátké heslo
-    }
+        }
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Bezpečné uložení hesla pomocí hashování
         

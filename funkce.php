@@ -31,4 +31,9 @@ function foot()
     </footer>';
 }
 
+function user_used()
+{
+    
+}
+
 ?>
