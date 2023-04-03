@@ -2,7 +2,7 @@
 // Připojení k databázi pomocí mysqli
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $dbname = "obrazky";
 
 // Vytvoření připojení

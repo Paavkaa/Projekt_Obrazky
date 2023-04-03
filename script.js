@@ -16,6 +16,8 @@ function checkEmail()
         mailError.style.display = "inline-block";
         document.getElementById("email").value = "";
         document.getElementById("email").focus();
+        document.getElementById("email").classList.remove("form_text");
+        document.getElementById("email").classList.add("form_warning");
         hideBr.style.display = "block";
         return false;
     }
@@ -34,6 +36,9 @@ function checkPassword() {
         document.getElementById("password").value = "";
         document.getElementById("password2").value = "";
         document.getElementById("password").focus();
+        document.getElementById("password").classList.remove("form_text");
+        document.getElementById("password").classList.add("form_warning");
+
         return false;
     }
     else if (password !== password2) {
@@ -43,6 +48,9 @@ function checkPassword() {
         document.getElementById("password").value = "";
         document.getElementById("password2").value = "";
         document.getElementById("password").focus();
+        document.getElementById("password").classList.remove("form_text");
+        document.getElementById("password").classList.add("form_warning");
+
         return false;
     } 
     else {
