@@ -22,9 +22,14 @@ if(isset($_POST['submit']))
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo '<script>alert("Tento nickname již existuje. Zvolte prosím jiný.");</script>'; // Zobrazení varování, pokud již existuje uživatel se zadaným nickname
-    } else {
-        // Vložení nickname do databáze
-        $email = $_POST['email'];
+    }
+    // Vložení nickname do databáze
+    $email = $_POST['email'];
+    $sql = "SELECT * FROM user WHERE mail = '$email'";
+    if ($result->num_rows > 0) {
+        echo '<script>alert("Tento e-mail je už použit. Zvolte prosím jiný.");</script>'; // Zobrazení varování, pokud již existuje uživatel se zadaným nickname
+    } 
+    else {
 
         $password = $_POST['password'];
         $password_check = $_POST['password2'];
