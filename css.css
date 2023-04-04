@@ -31,6 +31,14 @@ h2
     background-size: 100% 100vh;
 }
 
+.hideBr
+{
+    display: none;
+}
+.showBr
+{
+    display: block;
+}
 
 .shadow
 {

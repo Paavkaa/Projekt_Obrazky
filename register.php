@@ -10,8 +10,8 @@
 </head>
 
 <?php
-include 'db.php';
-
+    require 'funkce.php';
+    require 'db.php';
 ?>
 
 <body class="back-red">
@@ -21,11 +21,16 @@ include 'db.php';
             <form action="" method="post">
                 <input class="form_text" type="text" id="username" name="username" placeholder="Přezdívka" autofocus>
                 <br>
+                <span style="display:none" class="warning" id="usernameError">Zadej přezdívku</span>
+                <?php
+                    user();
+                ?>
+                <br style="display: none;" id="hideBr1">
                 
                 <input class="mt-2 form_text" type="text" id="email" name="email" placeholder="E-mail">
                 <br>
                     <span style="display:none;" class="warning" id="mailError">Chybný email</span>
-                    <br style="display: none;" id="hideBr">
+                    <br style="display: none;" id="hideBr2">
 
                 <input class="mt-2 form_text" type="password" id="password" name="password" placeholder="Zadej heslo">
                 <br>
@@ -57,7 +62,6 @@ include 'db.php';
 
 
     <?php
-        require 'funkce.php';
         nav();
         foot();
     ?>

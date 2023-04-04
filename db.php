@@ -1,4 +1,6 @@
 <?php
+require 'funkce.php';
+
 // Připojení k databázi pomocí mysqli
 $servername = "localhost";
 $username = "root";
@@ -28,6 +30,7 @@ if(isset($_POST['submit']))
     $email = $_POST['email'];
     $sql = "SELECT * FROM user WHERE mail = '$email'";
     if ($result->num_rows > 0) {
+        header('location: register.php');
         echo '<script>alert("Tento e-mail je už použit. Zvolte prosím jiný.");</script>'; // Zobrazení varování, pokud již existuje uživatel se zadaným nickname
     } 
     else {
@@ -56,6 +59,5 @@ if(isset($_POST['submit']))
 
 
 }
-
 
 ?>

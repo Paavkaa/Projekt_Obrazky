@@ -1,4 +1,10 @@
 <?php
+/* $servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "obrazky";
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+ */
 function nav()
 {
 echo'
@@ -31,9 +37,17 @@ function foot()
     </footer>';
 }
 
-function user_used()
+function user()
 {
-    
+    if(isset($_POST['submit']))
+    {
+        $nickname = $_POST['username'];
+        $sql = "SELECT * FROM user WHERE nickname = '$nickname'";
+        $result = $GLOBALS['conn']->query($sql);
+        if ($result->num_rows > 0) {
+            echo '<span style="display:none;" class="warning" id="nickUsed">Přezdívka je už použita, zvol jinou</span>';
+        }
+    }
 }
 
 ?>

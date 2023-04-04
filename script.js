@@ -1,9 +1,40 @@
+
+function checkUsername() 
+{
+    var username = document.getElementById("username").value;
+    var usernameError = document.getElementById("usernameError");
+    var hideBr = document.getElementById("hideBr1");
+
+    if(username == "") {
+        document.getElementById("username").focus();
+        document.getElementById("username").classList.remove("form_text");
+        document.getElementById("username").classList.add("form_warning");
+        usernameError.style.display = "inline-block";
+        hideBr.style.display = "block";
+
+        return false;
+    } else {
+        document.getElementById("username").classList.remove("form_warning");
+        document.getElementById("username").classList.add("form_text");
+
+        return true;
+    }
+}
+
+function duplicateUsername()
+{
+    var hideBr = document.getElementById("hideBr1");
+    document.getElementById("nickUsed").style.display = "inline-block";
+    hideBr.style.display = "block";
+
+}
+
 function checkEmail()
 {
     var mail = document.getElementById("email").value;
     var mailError = document.getElementById("mailError");
     var mailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    var hideBr = document.getElementById("hideBr");
+    var hideBr = document.getElementById("hideBr2");
     if(mailRegex.test(mail))
     {
         mailError.style.display = "none";
@@ -60,7 +91,7 @@ function checkPassword() {
 }
 
 document.getElementById("submit").addEventListener("click", function(event) {
-    if (!checkEmail() || !checkPassword()) {
+    if (!checkUsername() || !duplicateUsername() || !checkEmail() || !checkPassword()) {
         event.preventDefault();
     }
 });
