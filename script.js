@@ -4,11 +4,18 @@ function checkUsername()
     var username = document.getElementById("username").value;
     var usernameError = document.getElementById("usernameError");
     var hideBr = document.getElementById("hideBr1");
+    var duplicity = this.responseText;
+    if(duplicity === 'exists')
+    {
+        var hideBr = document.getElementById("hideBr1");
+        document.getElementById("nickUsed").style.display = "inline-block";
+        hideBr.style.display = "block";
+    }
 
     if(username == "") {
         document.getElementById("username").focus();
-        document.getElementById("username").classList.remove("form_text");
-        document.getElementById("username").classList.add("form_warning");
+        document.getElementById("username").classList.remove(":form_text");
+        document.getElementById("username").classList.add(":form_warning");
         usernameError.style.display = "inline-block";
         hideBr.style.display = "block";
 
@@ -19,15 +26,9 @@ function checkUsername()
 
         return true;
     }
+    
 }
 
-function duplicateUsername()
-{
-    var hideBr = document.getElementById("hideBr1");
-    document.getElementById("nickUsed").style.display = "inline-block";
-    hideBr.style.display = "block";
-
-}
 
 function checkEmail()
 {
@@ -42,14 +43,14 @@ function checkEmail()
         
         return true;
     }
-    else
+    if(mail == "") 
     {
-        mailError.style.display = "inline-block";
-        document.getElementById("email").value = "";
         document.getElementById("email").focus();
         document.getElementById("email").classList.remove("form_text");
         document.getElementById("email").classList.add("form_warning");
+        mailError.style.display = "inline-block";
         hideBr.style.display = "block";
+
         return false;
     }
 }
@@ -90,8 +91,21 @@ function checkPassword() {
     }
 }
 
+function checkCheckbox() {
+    var checkbox = document.getElementById("checkbox");
+    var checkboxError = document.getElementById("checkboxError");
+    if (checkbox.checked) {
+        checkboxError.style.display = "none";
+        return true;
+    } else {
+        checkboxError.style.display = "inline-block";
+        return false;
+    }
+}
+
+
 document.getElementById("submit").addEventListener("click", function(event) {
-    if (!checkUsername() || !duplicateUsername() || !checkEmail() || !checkPassword()) {
+    if (!checkUsername() || !checkEmail() || !checkPassword() || !checkCheckbox()) {
         event.preventDefault();
     }
 });

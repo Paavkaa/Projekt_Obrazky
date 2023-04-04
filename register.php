@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css.css">
-    <script src="script.js"></script>
     <title>Document</title>
 </head>
 
 <?php
-    require 'funkce.php';
+
     require 'db.php';
+    require 'funkce.php';
 ?>
 
 <body class="back-red">
@@ -21,15 +21,24 @@
             <form action="" method="post">
                 <input class="form_text" type="text" id="username" name="username" placeholder="Přezdívka" autofocus>
                 <br>
-                <span style="display:none" class="warning" id="usernameError">Zadej přezdívku</span>
                 <?php
-                    user();
+                        if (isset($_GET['error1'])) 
+                        {
+                            echo '<div class="warning">' . $_GET['error1'] . '</div>';
+                        }
                 ?>
+                <span style="display:none" class="warning" id="usernameError">Zadej přezdívku</span>
                 <br style="display: none;" id="hideBr1">
                 
                 <input class="mt-2 form_text" type="text" id="email" name="email" placeholder="E-mail">
                 <br>
-                    <span style="display:none;" class="warning" id="mailError">Chybný email</span>
+                    <?php
+                        if (isset($_GET['error2'])) 
+                        {
+                            echo '<div class="warning">' . $_GET['error2'] . '</div>';
+                        }
+                    ?>
+                    <span style="display:none;" class="warning" id="mailError">Neplatný email</span>
                     <br style="display: none;" id="hideBr2">
 
                 <input class="mt-2 form_text" type="password" id="password" name="password" placeholder="Zadej heslo">
@@ -43,10 +52,10 @@
                 <div class="mt-2 ">
                     <div class="align_center">
                         <label >Souhlasím s podmínkami</label>
-                        <input class="form_check" type="checkbox" name="checkbox">
+                        <input class="form_check" type="checkbox" id="checkbox" name="checkbox">
                     </div>
-                
                 </div>
+                <span style="display: none;" class="warning" id="checkboxError">Musíš souhlasit s podmínkami</span>
 
                 <div class="text_center">
                     <input class="mt-5 form_submit" type="submit" id="submit" name="submit" value="Registrovat">
@@ -62,6 +71,18 @@
 
 
     <?php
+        if (isset($_GET['success_message'])) {
+            echo '<div class="success">' . $_GET['success_message'] . '</div>';
+        }
+        
+        if (isset($_GET['errors'])) {
+            $errors = explode(", ", $_GET['errors']);
+            echo '<div class="errors">';
+            foreach ($errors as $error) {
+                echo '<div>';
+            }
+        }
+
         nav();
         foot();
     ?>
