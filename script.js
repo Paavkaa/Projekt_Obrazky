@@ -4,14 +4,6 @@ function checkUsername()
     var username = document.getElementById("username").value;
     var usernameError = document.getElementById("usernameError");
     var hideBr = document.getElementById("hideBr1");
-    var duplicity = this.responseText;
-    if(duplicity === 'exists')
-    {
-        var hideBr = document.getElementById("hideBr1");
-        document.getElementById("nickUsed").style.display = "inline-block";
-        hideBr.style.display = "block";
-    }
-
     if(username == "") {
         document.getElementById("username").focus();
         document.getElementById("username").classList.remove(":form_text");
