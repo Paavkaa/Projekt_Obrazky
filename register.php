@@ -10,7 +10,7 @@
 
 <?php
 
-    require 'db.php';
+    require 'db_register.php';
     require 'funkce.php';
 ?>
 
@@ -28,24 +28,35 @@
                         }
                 ?>
                 <div style="display:none" class="warning" id="usernameError">Zadej přezdívku</div>
+                <br style="display: none;" id="hideBr1">
                 
                 <input class="mt-2 form_text" type="text" id="email" name="email" placeholder="E-mail">
                 <br>
-                    <?php
-                        if (isset($_GET['error2'])) 
-                        {
-                            echo '<div class="warning">' . $_GET['error2'] . '</div>';
-                        }
-                    ?>
-                    <div style="display:none;" class="warning" id="mailError">Neplatný email</div>
+                <?php
+                    if (isset($_GET['error2'])) 
+                    {
+                        echo '<div class="warning">' . $_GET['error2'] . '</div>';
+                    }
+                ?>
+                <div style="display:none;" class="warning" id="mailError">Neplatný email</div>
+                <br style="display: none;" id="hideBr2">
 
                 <input class="mt-2 form_text" type="password" id="password" name="password" placeholder="Zadej heslo">
                 <br>
+                <div style="display: none;" class="warning" id="passwordLengthError">Heslo je krátké </div>
+                <br style="display:none" id="hideBr3"> 
                 
                 <input class="mt-2 form_text" type="password" id="password2" name="password2" placeholder="Zadej znovu heslo">
                 <br>
-                <div style="display: none;" class="warning" id = "passwordError">Hesla se neshodují!</div>
-                <div style="display: none;" class="warning" id = "passwordLength">Heslo je krátké! Minimum je 8 znaků</div>
+                <div style="display: none;" class="warning" id="passwordMatchError">Hesla se neshodují</div>
+                <br style="display: none;" id="hideBr4">
+                <?php
+                    if (isset($_GET['error3'])) 
+                    {
+                        echo '<div class="warning">' . $_GET['error3'] . '</div>';
+                    }
+                ?>
+
 
                 <div class="mt-2 ">
                     <div class="align_center">
@@ -53,10 +64,15 @@
                         <input class="form_check" type="checkbox" id="checkbox" name="checkbox">
                     </div>
                 </div>
-                <span style="display: none;" class="warning" id="checkboxError">Musíš souhlasit s podmínkami</span>
+                <?php
+                    if (isset($_GET['error5'])) 
+                    {
+                        echo '<div class="warning">' . $_GET['error5'] . '</div>';
+                    }
+                ?>
 
                 <div class="text_center">
-                    <input class="mt-5 form_submit" type="submit" id="submit" name="submit" value="Registrovat">
+                    <input class="mt-5 form_submit" type="submit" id="register" name="submit" value="Registrovat">
                 </div>
 
             </form>
@@ -67,25 +83,13 @@
         </div>
     </div>
 
-
+    
+    <script src="script.js"></script>
     <?php
-        if (isset($_GET['success_message'])) {
-            echo '<div class="success">' . $_GET['success_message'] . '</div>';
-        }
-        
-        if (isset($_GET['errors'])) {
-            $errors = explode(", ", $_GET['errors']);
-            echo '<div class="errors">';
-            foreach ($errors as $error) {
-                echo '<div>';
-            }
-        }
-
         nav();
         foot();
     ?>
 
-    <script src="script.js"></script>
 
 </body>
 </html>

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 /* $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -14,18 +16,32 @@ echo'
             <a class = "menu_item" href="#"> Alba </a>
             <a class = "menu_item" href="#"> Kategorie </a>
 
-            <a class = "menu_item" href="user.php"> Uživatel(testing) </a>
-        </div>
+        </div>';
 
-        <div class = "menu right">
-            <a class = "menu_item" href="login.php"> Přihlásit </a>
-            <a class = "menu_item" href="register.php"> Registrovat </a>
-        </div>
+        if(isset($_SESSION["nickname"]))
+        {
+            echo'<div class = "menu right drop_menu">
+                <a class = "menu_item" href="user.php"> ' . $_SESSION["nickname"] . ' </a>
+                <div class = "drop_content">
+                    <a class = "drop_item" href="user.php"> Profil </a>
+                    <a class = "drop_item" href="user.php"> Nastavení </a>
+                    <a class = "drop_item" href="logout.php"> Odhlásit se </a>
+                </div>
+            </div>';
+        }
+        else
+        {
+            echo'<div class = "menu right">
+                <a class = "menu_item" href="login.php"> Přihlásit se </a>
+                <a class = "menu_item" href="register.php"> Registrovat se </a>
+            </div>';
+        }
 
-        <div class = "menu right search">
+        echo'<div class = "menu right search">
             <input class = " menu_text" type = "text" name = "search" placeholder = "Hledat">
             <input class = " menu_submit" type = "submit" name = "submit" value = "Ok">
         </div>
+
     </nav>';
 }
 
@@ -35,19 +51,6 @@ function foot()
     <footer>
             <p> &copy; 2023 - Všechna práva vyhrazena </p>
     </footer>';
-}
-
-function user()
-{
-    if(isset($_POST['submit']))
-    {
-        $nickname = $_POST['username'];
-        $sql = "SELECT * FROM user WHERE nickname = '$nickname'";
-        $result = $GLOBALS['conn']->query($sql);
-        if ($result->num_rows > 0) {
-            echo '<span style="display:none;" class="warning" id="nickUsed">Přezdívka je už použita, zvol jinou</span>';
-        }
-    }
 }
 
 ?>

@@ -13,7 +13,9 @@
     ?>
     <header class="circle1 align_center">
         <div class="circle2 ml_5">
-            <h2>Profil uživatele [uzivatel]</h2>
+            <?php
+                    echo '<h2 class="text_center">Přihlášen jako ' . $_SESSION['nickname'] . '</h2>';
+            ?>
         </div>
     </header>
 
