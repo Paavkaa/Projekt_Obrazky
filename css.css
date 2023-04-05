@@ -275,31 +275,36 @@ nav
 .drop_menu
 {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+
+    margin-right: 20px;
 }
 
 .drop_content
 {
-    /* display: none; */
+    display: none;
     position: absolute;
     top: 100%;
-    z-index: 1;
     background-color: rgba(0, 0, 0, 0.75);
 }
 
 .drop_item
 {
-    height: 50px;
     display: flex;
-    align-self: center;
-
-    z-index: 1;
+    
+    padding: 15px 10px;  
 
     color: white;
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
 }
+.drop_item:hover
+{
+    background-color: black;
+}
+
 .drop_menu:hover .drop_content
 {
     display: block;

@@ -26,9 +26,9 @@ echo'
     echo '<div class="menu drop_menu">
         <a class="menu_item" href="user.php">' . $_SESSION["nickname"] . '</a>
         <div class="drop_content">
-            <a class="drop_item" href="user.php">Profil</a>
-            <a class="drop_item" href="user.php">Nastavení</a>
-            <a class="drop_item" href="logout.php">Odhlásit</a>
+            <a class="drop_item justify_center" href="user.php">Profil</a>
+            <a class="drop_item justify_center" href="user.php">Nastavení</a>
+            <a class="drop_item justify_center" href="logout.php">Odhlásit</a>
         </div>
     </div>';
     } 
