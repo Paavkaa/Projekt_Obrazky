@@ -10,6 +10,7 @@
 <body>
     <?php
         require 'funkce.php';
+        nav();
     ?>
     <header class="circle1 align_center">
         <div class="circle2 ml_5">
@@ -33,7 +34,6 @@
     </div>
 
     <?php
-        nav();
         foot();
     ?>
 </body>
