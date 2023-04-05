@@ -31,15 +31,6 @@ h2
     background-size: 100% 100vh;
 }
 
-.hideBr
-{
-    display: none;
-}
-.showBr
-{
-    display: block;
-}
-
 .shadow
 {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
@@ -83,7 +74,7 @@ h2
 .card
 {    
     height: auto;
-    width: 100vw;
+    width: 100%;
 
     display: flex;
     align-items: center;
@@ -107,6 +98,8 @@ h2
 .warning
 {
     margin-top: 5px;
+
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
     color: #ef473a;
@@ -124,17 +117,11 @@ h2
 }
 .form_warning:hover
 {
-    border-color: black;
+    border-color: #ef473a;
 }
 .form_warning:focus
 {
-    width: 400px;
-    height: 30px;
-
-    padding: 5px 0 5px 10px;
-
-    border: 2px solid #ef473a;
-    border-radius: 8px;
+    border-color: #ef473a;
 }
 
 /*Form*/
@@ -260,7 +247,7 @@ nav
     top: 0;
 
     width: 100%;
-    height: auto;
+    height: 10%;
 
     background-color: rgba(0, 0, 0, 0.75);
 
