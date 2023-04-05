@@ -27,8 +27,7 @@
                             echo '<div class="warning">' . $_GET['error1'] . '</div>';
                         }
                 ?>
-                <span style="display:none" class="warning" id="usernameError">Zadej přezdívku</span>
-                <br style="display: none;" id="hideBr1">
+                <div style="display:none" class="warning" id="usernameError">Zadej přezdívku</div>
                 
                 <input class="mt-2 form_text" type="text" id="email" name="email" placeholder="E-mail">
                 <br>
@@ -38,16 +37,15 @@
                             echo '<div class="warning">' . $_GET['error2'] . '</div>';
                         }
                     ?>
-                    <span style="display:none;" class="warning" id="mailError">Neplatný email</span>
-                    <br style="display: none;" id="hideBr2">
+                    <div style="display:none;" class="warning" id="mailError">Neplatný email</div>
 
                 <input class="mt-2 form_text" type="password" id="password" name="password" placeholder="Zadej heslo">
                 <br>
                 
                 <input class="mt-2 form_text" type="password" id="password2" name="password2" placeholder="Zadej znovu heslo">
                 <br>
-                <span style="display: none;" class="warning" id = "passwordError">Hesla se neshodují!</span>
-                <span style="display: none;" class="warning" id = "passwordLength">Heslo je krátké! Minimum je 8 znaků</span>
+                <div style="display: none;" class="warning" id = "passwordError">Hesla se neshodují!</div>
+                <div style="display: none;" class="warning" id = "passwordLength">Heslo je krátké! Minimum je 8 znaků</div>
 
                 <div class="mt-2 ">
                     <div class="align_center">

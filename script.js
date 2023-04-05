@@ -95,7 +95,6 @@ function checkCheckbox() {
     }
 }
 
-
 document.getElementById("submit").addEventListener("click", function(event) {
     if (!checkUsername() || !checkEmail() || !checkPassword() || !checkCheckbox()) {
         event.preventDefault();
