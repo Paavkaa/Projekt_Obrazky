@@ -23,13 +23,21 @@
     <div class="card">
         <div class="card_item shadow">
             <h3>Alba</h3>
+            <div class="row">
+                <div class="shadow card_item album justify_center align_center column">
+                    <img src="img/chemie.png" class="album_image mt-2" alt="obrazek">
+                    <h4 class="text_center">Chemie</h4>
+                </div>
+
+                <a href="new_alb.php" class="no_decoration"><div class="shadow card_item album justify_center align_center column">
+                    <p class="add align_center" >+</p>
+                    <h3 class="text_center">Nové album</h3>
+                </div></a>
+            </div>
+            
             <?php
                 
             ?>
-            <div class="mt-5">
-                <h3>Nezařazené</h3>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores eaque labore nobis quo. Quae amet numquam saepe possimus rem expedita dolorem dolore velit debitis ipsam ducimus reprehenderit esse atque doloremque deserunt natus a ipsa nam, architecto pariatur suscipit ullam provident veniam? Pariatur debitis illo sed velit incidunt aut vel veritatis!</p>
-            </div>
         </div>
     </div>
 

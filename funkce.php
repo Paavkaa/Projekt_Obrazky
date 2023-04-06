@@ -10,7 +10,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 function nav()
 {
 echo'
-<div class="absolute_top">
+<div class="absolute_top no_select">
     <nav>
         <div class="menu">
             <a class="menu_item" href="index.php">Domů</a>
@@ -28,13 +28,13 @@ echo'
         <div class="drop_content">
             <a class="drop_item justify_center" href="user.php">Profil</a>
             <a class="drop_item justify_center" href="user.php">Nastavení</a>
-            <a class="drop_item justify_center" href="logout.php">Odhlásit</a>
+            <a class="drop_item justify_center" href="logout.php" id="logout-btn">Odhlásit</a>
         </div>
     </div>';
     } 
     else 
     {
-    echo '<div class="menu right">
+    echo '<div class="menu">
         <a class="menu_item" href="login.php">Přihlásit</a>
         <a class="menu_item" href="register.php">Registrovat</a>
     </div>';

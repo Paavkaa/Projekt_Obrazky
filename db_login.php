@@ -33,7 +33,7 @@ if(isset($_POST['submit']))
         {
             session_start();
             $_SESSION['nickname'] = $nickname;
-            header("location: index.php");
+            header("location: user.php");
         }
         else
         {
@@ -42,6 +42,5 @@ if(isset($_POST['submit']))
         }
     }
 }
-
 
 ?>

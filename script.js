@@ -2,13 +2,11 @@ function checkUsername()
 {
     var username = document.getElementById("username").value;
     var usernameError = document.getElementById("usernameError");
-    var hideBr = document.getElementById("hideBr1");
     if(username == "") {
         document.getElementById("username").focus();
         document.getElementById("username").classList.remove("form_text");
         document.getElementById("username").classList.add("form_warning");
         usernameError.style.display = "inline-block";
-        hideBr.style.display = "block";
 
         return false;
     } else 
@@ -16,7 +14,6 @@ function checkUsername()
         document.getElementById("username").classList.remove("form_warning");
         document.getElementById("username").classList.add("form_text");
         usernameError.style.display = "none";
-        hideBr.style.display = "none";
 
         return true;
     }
@@ -29,13 +26,11 @@ function checkEmail()
     var mail = document.getElementById("email").value;
     var mailError = document.getElementById("mailError");
     var mailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    var hideBr = document.getElementById("hideBr2");
     if(mailRegex.test(mail))
     {
         document.getElementById("email").classList.remove("form_warning");
         document.getElementById("email").classList.add("form_text");
         mailError.style.display = "none";
-        hideBr.style.display = "none";
         
         return true;
     }
@@ -45,7 +40,6 @@ function checkEmail()
         document.getElementById("email").classList.remove("form_text");
         document.getElementById("email").classList.add("form_warning");
         mailError.style.display = "inline-block";
-        hideBr.style.display = "block";
 
         return false;
     }
@@ -55,7 +49,6 @@ function checkEmail()
 function checkPasswordLength() {
     var password = document.getElementById("password").value;
     var passwordError = document.getElementById("passwordLengthError");
-    var hideBr = document.getElementById("hideBr3");
 
     if (password.length < 8) 
     {
@@ -63,7 +56,6 @@ function checkPasswordLength() {
         document.getElementById("password").classList.remove("form_text");
         document.getElementById("password").classList.add("form_warning");
         passwordError.style.display = "inline-block";
-        hideBr.style.display = "block";
 
 
         return false;
@@ -73,7 +65,6 @@ function checkPasswordLength() {
         document.getElementById("password").classList.remove("form_warning");
         document.getElementById("password").classList.add("form_text");
         passwordError.style.display = "none";
-        hideBr.style.display = "none";
 
         return true;
     }
@@ -86,7 +77,6 @@ function checkPasswordMatch()
     var password = document.getElementById("password").value;
     var password2 = document.getElementById("password2").value;
     var passwordError = document.getElementById("passwordMatchError");
-    var hideBr = document.getElementById("hideBr4");
 
 
     if (password !== password2) {
@@ -94,7 +84,6 @@ function checkPasswordMatch()
         document.getElementById("password2").classList.remove("form_text");
         document.getElementById("password2").classList.add("form_warning");
         passwordError.style.display = "inline-block";
-        hideBr.style.display = "block";
 
         return false;
     } 
@@ -102,7 +91,6 @@ function checkPasswordMatch()
         document.getElementById("password2").classList.remove("form_warning");
         document.getElementById("password2").classList.add("form_text");
         passwordError.style.display = "none";
-        hideBr.style.display = "none";
 
         return true;
     }

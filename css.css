@@ -3,6 +3,9 @@ body, html
 {
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 *:focus {
@@ -10,7 +13,7 @@ body, html
 }
 
 
-h1, h2, h3, h4, h5, h6, p, a, span
+h1, h2, h3, h4, h5, h6, p, a, span, label
 {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -24,18 +27,32 @@ h2
     font-size: 60px;
 }
 
-.back-red
+label
 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    
-    background: linear-gradient(#cb2d3e, #ef473a);
+    font-size: 15px;
+}
+
+.link
+{
+    text-decoration: none;
+    color: black;
+}
+
+.no_decoration
+{
+    text-decoration: none;
+    color: black;
+}
+
+.no_select
+{
+    user-select: none;
+}
+
+.back_red 
+{
+    background-image: linear-gradient(#cb2d3e, #ef473a);
     background-repeat: no-repeat;
-    background-size: 100%;
 }
 
 .shadow
@@ -46,7 +63,7 @@ h2
 .mt-8
 {
     margin-top: 80px;
-}
+} 
 .mt-5
 {
     margin-top: 50px;
@@ -60,6 +77,22 @@ h2
     margin-left: 50px;
 }
 
+.p1
+{
+    padding: 10px;
+}
+.column
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.row
+{
+    display: flex;
+    flex-direction: row;
+}
+
 .align_center
 {
     display: flex;
@@ -70,6 +103,12 @@ h2
 {
     display: flex;
     justify-content: center;
+}
+
+.space_between
+{
+    display: flex;
+    justify-content: space-between;
 }
 
 .text_center
@@ -100,6 +139,23 @@ h2
 
     background-color: rgb(245, 245, 245);
     border-radius: 15px;
+}
+
+.full_width
+{
+    width: inherit;
+    width: 100%;
+}
+
+.full_height
+{
+    height: inherit;
+    height: 100%;
+}
+.quarter_width
+{
+    width: inherit;
+    width: 25%;
 }
 
 .warning
@@ -151,23 +207,29 @@ h2
     border-color: black;
 }
 
-
-.form_submit
+.big_submit
 {
     height: 75px;
     width: 150px;
+}
 
+.small_submit
+{
+    height: 50px;
+    width: 100px;
+}
+
+.form_submit
+{
     font-size: 15px;
 
-    background-color: rgb(100, 195, 255);
-    border: 2px solid rgb(0, 130, 185);
+    background-color: white;
+    border: none;
     border-radius: 20px;
 }
 .form_submit:hover
 {
-    background-color: rgb(0, 130, 185);
-    border: 2px solid rgb(100, 195, 255);
-    color: white;
+    background-color: rgb(100, 195, 255);
 }
 .form_link
 {
@@ -215,6 +277,36 @@ h2
 {
     content: '\2713';
 }
+
+input[type="file"]
+{
+    display: none;
+}
+
+.form_file
+{
+    display: flex;
+
+    height: 200px;
+    width: 400px;
+
+    padding: 5px 0 5px 10px;
+
+    font-size: 20px;
+    color: rgb(185, 185, 185);
+
+    background-color: white;
+    border: dashed 2px rgb(210, 210, 210);
+    border-radius: 20px;
+
+}
+
+.form_file:hover
+{
+    border-color: black;
+    cursor: pointer;
+}
+
 
 /*Circle*/
 .circle1
@@ -403,4 +495,34 @@ footer
     color: white;
 
     padding: 20px;
+}
+
+/* Album */
+.album
+{
+    width: 250px;
+    height: 250px;
+
+    padding: 0;
+    margin: 10px;
+
+}
+
+.album_image
+{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.add
+{
+    height: 120px;
+    width: auto;
+
+    font-size: 150px;
+    color: rgb(0, 130, 185);
+
+    padding: 0;
+    margin: 0;
 }

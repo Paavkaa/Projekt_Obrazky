@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="back-red">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,13 +14,12 @@
     require 'funkce.php';
 ?>
 
-<body class="back-red">
-    <div class="card mt-8">
+<body class="back_red align_center justify_center">
+    <div class="card">
         <div class = "card_item shadow card_line mt-3" >
             <h2 class="text_center">Přihlásit</h2>
-            <form action="login.php" method="post">
+            <form action="login.php" class="column" method="post">
                 <input class="form_text" type="text" name="username" id="username" placeholder="Přezdívka" autofocus>
-                <br>
                 <div style="display:none" class="warning" id="usernameError">Zadej přezdívku</div>
                 <?php
                     if (isset($_GET['error1'])) 
@@ -28,10 +27,8 @@
                         echo '<div class="warning">' . $_GET['error1'] . '</div>';
                     }
                 ?>
-                <br style="display: none;" id="hideBr1">
 
                 <input class="mt-2 form_text" type="password" id="password" name="password" placeholder="Heslo">
-                <br>
                 <?php
                     if (isset($_GET['error2'])) 
                     {
@@ -40,7 +37,7 @@
                 ?>
 
                 <div class="text_center">
-                    <input class="mt-5 form_submit" type="submit" id="signin" name="submit" value="Přihlásit">
+                    <input class="mt-5 form_submit big_submit shadow" type="submit" id="signin" name="submit" value="Přihlásit">
                 </div>
             </form>            
             <div class="form_link">

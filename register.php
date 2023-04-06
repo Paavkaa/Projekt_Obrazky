@@ -14,13 +14,12 @@
     require 'funkce.php';
 ?>
 
-<body class="back-red">
-    <div class="card mt-8">
+<body class="back_red align_center justify_center">
+    <div class="card">
         <div class="card_item shadow card_line">
             <h2 class="text_center">Registrace</h2>
-            <form action="" method="post">
+            <form action="" class="column" method="post">
                 <input class="form_text" type="text" id="username" name="username" placeholder="Přezdívka" autofocus>
-                <br>
                 <?php
                         if (isset($_GET['error1'])) 
                         {
@@ -28,10 +27,8 @@
                         }
                 ?>
                 <div style="display:none" class="warning" id="usernameError">Zadej přezdívku</div>
-                <br style="display: none;" id="hideBr1">
                 
                 <input class="mt-2 form_text" type="text" id="email" name="email" placeholder="E-mail">
-                <br>
                 <?php
                     if (isset($_GET['error2'])) 
                     {
@@ -39,17 +36,12 @@
                     }
                 ?>
                 <div style="display:none;" class="warning" id="mailError">Neplatný email</div>
-                <br style="display: none;" id="hideBr2">
 
                 <input class="mt-2 form_text" type="password" id="password" name="password" placeholder="Zadej heslo">
-                <br>
                 <div style="display: none;" class="warning" id="passwordLengthError">Heslo je krátké </div>
-                <br style="display:none" id="hideBr3"> 
                 
                 <input class="mt-2 form_text" type="password" id="password2" name="password2" placeholder="Zadej znovu heslo">
-                <br>
                 <div style="display: none;" class="warning" id="passwordMatchError">Hesla se neshodují</div>
-                <br style="display: none;" id="hideBr4">
                 <?php
                     if (isset($_GET['error3'])) 
                     {
@@ -72,7 +64,7 @@
                 ?>
 
                 <div class="text_center">
-                    <input class="mt-5 form_submit" type="submit" id="register" name="submit" value="Registrovat">
+                    <input class="mt-5 form_submit big_submit shadow" type="submit" id="register" name="submit" value="Registrovat">
                 </div>
 
             </form>
