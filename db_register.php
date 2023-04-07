@@ -30,6 +30,10 @@ if(isset($_POST['submit']))
         exit();
         /* die("přezdívka je již použita"); */
     }
+    if (strlen($nickname) == 0) 
+    {
+        die("přezdívka je prázdná");
+    }
 
     $email = $_POST['email'];
     $sql = "SELECT * FROM user WHERE mail = '$email'";
@@ -42,6 +46,11 @@ if(isset($_POST['submit']))
         exit();
         /* die("e-mail je již použitý"); */
     } 
+    if (strlen($email) == 0) 
+    {
+        die("e-mail je prázdný");
+    }
+    
     else 
     {
         $password = $_POST['password'];
@@ -68,7 +77,14 @@ if(isset($_POST['submit']))
         else
         {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Bezpečné uložení hesla pomocí hashování
-            
+
+            $dir = "users/".$nickname;
+            if (!file_exists($dir)) 
+            {
+                mkdir($dir, 0777, true);
+            }
+
+
             $sql = "INSERT INTO user (nickname, mail, password) VALUES ('$nickname', '$email', '$hashed_password')";
             if ($conn->query($sql) === TRUE) 
             {

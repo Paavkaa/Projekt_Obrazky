@@ -5,26 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css.css">
-    <link rel="stylesheet" href="slider.css">
     <title>Document</title>
 </head>
 
 <body class="back_red align_center justify_center">
 
 <?php
-require 'db_album.php';
+require 'db_pic.php';
 ?>
 
 <div class="card">
     <div class="card_item shadow card_line">
-        <h2>Vytvoř nové album</h2>
-        <form action="new_alb.php" class="column align_center justify_center" method="post" enctype="multipart/form-data">
+        <h2>Přidej obrázky</h2>
+        <form action="" class="column align_center justify_center" method="post" enctype="multipart/form-data">
             <div class=" column">
-                <input type="text" name="name" id="name" class="form_text" placeholder="Název alba">
 
                 <div class="mt-2 ">
                     <label for="file" class="form_file text_center align_center justify_center"> Vlož obrázky</label>
-                    <input type="file" name="files[]" id="file" multiple>
+                    <input type="file" name="file" id="file" multiple>
                     
                 </div>
 
@@ -33,14 +31,6 @@ require 'db_album.php';
                     <div id="preview" class="preview"></div>
                 </div>
                 
-                <div class="mt-2 space_between half_width align_center">
-                    <span>Veřejný</span>
-                    <label class="switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
-                    </label>
-                </div>
-
             </div>
 
             <div class="space_between align_center full_width mt-2">

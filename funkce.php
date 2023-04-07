@@ -22,7 +22,7 @@ echo'
     <input class = " menu_text" type = "text" name = "search" placeholder = "Hledat">
     <input class = " menu_submit" type = "submit" name = "submit" value = "Ok">
     </div> </div>';
-    if(isset($_SESSION["nickname"])) {
+    if(isset($_SESSION["ID_user"])) {
     echo '<div class="menu drop_menu">
         <a class="menu_item" href="user.php">' . $_SESSION["nickname"] . '</a>
         <div class="drop_content">

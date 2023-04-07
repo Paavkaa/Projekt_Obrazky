@@ -32,6 +32,7 @@ if(isset($_POST['submit']))
         if (password_verify($password, $stored_password)) 
         {
             session_start();
+            $_SESSION['ID_user'] = $row['ID_user'];
             $_SESSION['nickname'] = $nickname;
             header("location: user.php");
         }
