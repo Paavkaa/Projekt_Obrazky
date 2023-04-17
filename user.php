@@ -1,3 +1,6 @@
+<?php
+    require 'funkce.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +11,6 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        require 'funkce.php';
-        nav();
-    ?>
     <header class="circle1 align_center">
         <div class="circle2 ml_5">
             <?php
@@ -19,46 +18,22 @@
             ?>
         </div>
     </header>
+    <?php
+        nav();
+    ?>
 
     <div class="card">
-        <div class="card_item shadow">
-            <h3>Alba</h3>
-            <div class="row">
-                <div class="shadow card_item album justify_center align_center column">
-                    <img src="img/chemie.png" class="album_image mt-2" alt="obrazek">
-                    <h4 class="text_center">Chemie</h4>
-                </div>
-
-                <a href="new_alb.php" class="no_decoration">
-                    <div class="shadow card_item album justify_center align_center column">
-                    <p class="add align_center" >+</p>
-                    <h3 class="text_center">Nové album</h3>
-                    </div>
-                </a>
-
-                <a href="new_pic.php" class="no_decoration">
-                    <div class="shadow card_item album justify_center align_center column">
-                    <p class="add align_center" >+</p>
-                    <h3 class="text_center">Nové foto</h3>
-                    </div>
-                </a>
+        <div class="card_item">
+            <div class="">
+                <?php
+                    album();
+                ?>
             </div>
-            <h3>Nezařazené</h3>
-            <div class="row">
-                <div class="shadow card_item album justify_center align_center column">
-                    <img src="img/chemie.png" class="album_image mt-2" alt="obrazek">
-                    <h4 class="text_center">Chemie</h4>
-                </div>
-            </div>
-            
-            <?php
-                
-            ?>
         </div>
     </div>
 
     <?php
-        foot();
+       /*  foot(); */
     ?>
 </body>
 </html>

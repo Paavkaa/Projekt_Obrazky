@@ -11,40 +11,42 @@ if (!$conn) {
     die("Připojení se nezdařilo: " . mysqli_connect_error());
 }
 
-if(isset($_FILES['file']) && !empty($_FILES['file']['name'])) {
-
+if (isset($_POST['submit'])) 
+{
     $files = $_FILES['file'];
-    //nastaveni adresare pro upload
-    $upload_dir = './users/'.$_SESSION['nickname'] .'/' ;
+    $count = count($_FILES['file']['name']);
+    $ID_alb = $_GET['id'];
 
-    if(is_array($files['name'])) { // If multiple files, $files['name'] will be an array
-        $file_count = count($files['name']);
-    } else { // If one file, $files['name'] will be a string
-        $file_count = 1;
+    for ($i=0; $i < $count; $i++) { 
+        $fileName = $_FILES['file']['name'][$i];
+        $fileTmpName = $files['tmp_name'][$i];
+        $fileDestination = './users/'. $_SESSION['nickname'] .'/'.$fileName;
+
+        if (is_uploaded_file($fileTmpName)) {
+            if (!file_exists('./users/'.$_SESSION['nickname'])) {
+                mkdir('./users/'.$_SESSION['nickname']);
+            }
+            if (move_uploaded_file($fileTmpName, $fileDestination)) {
+                echo "Soubor byl úspěšně nahrán a uložen do složky './users/". $_SESSION['nickname'] ."'.";
+            } else {
+                echo "Při ukládání souboru došlo k chybě.";
+            }
+        } else {
+            echo "Soubor nebyl úspěšně nahrán na server.";
+        }
+
+        $sql = "INSERT INTO picture (nazev_pic, ID_alb) VALUES ('$fileName', '$ID_alb')";
+
+        if (mysqli_query($conn, $sql)) 
+        {
+            echo "New record created successfully";
+        } 
+        else 
+        {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
     }
-
-    // Loop through all the files
-    for($i = 0; $i < $file_count; $i++) {
-
-        // Get the file name and extension
-        $filename = basename($files['name'][$i]);
-        $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
-        $file_name = pathinfo($filename, PATHINFO_FILENAME);
-        $file_complete = $file_name . '.' . $file_ext;
-
-
-        // Move the file to the upload directory
-        $upload_file = $upload_dir . $file_complete;
-        move_uploaded_file($files['tmp_name'][$i], $upload_file);
-
-        // Insert the file into the database
-        $sql = "INSERT INTO picture (nazev_pic, ID_alb) VALUES ('$file_complete' , '1')";
-        $result = mysqli_query($conn, $sql);
-    }
-
-    echo "Images uploaded successfully.";
-
-} else {
-    echo "Please select an image file to upload.";
+    header("Location: album.php?id=$ID_alb");
 }
+
 ?>

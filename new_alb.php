@@ -18,11 +18,11 @@ require 'db_album.php';
 <div class="card">
     <div class="card_item shadow card_line">
         <h2>Vytvoř nové album</h2>
-        <form action="new_alb.php" class="column align_center justify_center" method="post" enctype="multipart/form-data">
+        <form action="db_album.php" class="column align_center justify_center" method="post" enctype="multipart/form-data">
             <div class=" column">
                 <input type="text" name="name" id="name" class="form_text" placeholder="Název alba">
 
-                <div class="mt-2 ">
+                <!-- <div class="mt-2 ">
                     <label for="file" class="form_file text_center align_center justify_center"> Vlož obrázky</label>
                     <input type="file" name="files[]" id="file" multiple>
                     
@@ -31,12 +31,12 @@ require 'db_album.php';
                 <p class="gray mt-1">Vložené obrázky:</p>
                 <div class="mt-1">
                     <div id="preview" class="preview"></div>
-                </div>
+                </div> -->
                 
                 <div class="mt-2 space_between half_width align_center">
                     <span>Veřejný</span>
                     <label class="switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
+                    <input type="checkbox" id="checkbox" name="checkbox"/>
                     <div class="slider round"></div>
                     </label>
                 </div>
@@ -45,7 +45,7 @@ require 'db_album.php';
 
             <div class="space_between align_center full_width mt-2">
                 <a href="user.php" class="no_select link">Zpět</a>
-                <input type="submit" class="form_submit shadow small_submit right" value="Vytvořit">
+                <input type="submit" name="submit" class="form_submit shadow small_submit right" value="Vytvořit">
             </div>
         </form>
     </div>

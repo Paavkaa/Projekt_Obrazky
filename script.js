@@ -121,7 +121,9 @@ function previewImages() {
       reader.readAsDataURL(file);
     }
   }
-  
+
+
+
 document.querySelector('#file').addEventListener("change", previewImages);
 
 document.getElementById("username").addEventListener("blur", function() {
@@ -132,9 +134,7 @@ document.getElementById("email").addEventListener("blur", function() {
 });
 document.getElementById("password").addEventListener("blur", function() {
     checkPasswordLength();
-}
-);
+});
 document.getElementById("password2").addEventListener("blur", function() {
     checkPasswordMatch();
-}
-);
+});

@@ -45,9 +45,10 @@
             </div>
         </div>
     </div>
+
     <?php
         nav();
-        foot();
+        /* foot(); */
     ?>
     <script src="script.js"></script>
 </body>

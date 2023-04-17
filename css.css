@@ -60,9 +60,43 @@ label
     background-repeat: no-repeat;
 }
 
+.back_black
+{
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.back_white
+{
+    background-color: white;
+}
+
+.back_gray
+{
+    background-color: rgb(245, 245, 245);
+}
+
+.border_red
+{
+    border: 2px solid #ef473a;
+    border-radius: 20px;
+
+    padding: 5px;
+
+}
+
+.border_none
+{
+    border: none;
+}
+
+.angle20
+{
+    border-radius: 20px;
+}
+
 .shadow
 {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 15px 0 rgba(0, 0, 0, 0.3);
 }
 
 .mt-8
@@ -88,20 +122,62 @@ label
     margin-left: 50px;
 }
 
+.ml_3
+{
+    margin-left: 30px;
+}
+
 .p1
 {
     padding: 10px;
 }
+
+.size_20
+{
+    font-size: 20px;
+}
+
+.size_40
+{
+    font-size: 40px;
+}
+
 .column
 {
     display: flex;
     flex-direction: column;
 }
 
+.wrap
+{
+    display: flex;
+    flex-flow: wrap;
+}
+
 .row
 {
     display: flex;
     flex-direction: row;
+}
+
+.inline-block
+{
+    display: inline-block;
+}
+
+.inline-flex
+{
+    display: inline-flex;
+}
+
+.block
+{
+    display: block;
+}
+
+.show 
+{
+    display: block;
 }
 
 .align_center
@@ -174,6 +250,12 @@ label
 {
     height: inherit;
     height: 100%;
+}
+
+.width_80
+{
+    width: inherit;
+    width: 80%;
 }
 
 .half_width
@@ -372,7 +454,8 @@ input[type="file"]
 
 .absolute_top
 {
-    position: absolute;
+    position: fixed;
+
     width: 100%;
     top: 0;
 }
@@ -388,9 +471,6 @@ nav
 
     position: relative;
     z-index: 2;
-
-    
-    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .drop_menu
@@ -407,7 +487,6 @@ nav
     display: none;
     position: absolute;
     top: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .drop_item
@@ -514,10 +593,8 @@ nav
 /*Footer*/
 footer
 {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: absolute;
+    margin-top: auto;
 
 
     width: 100%;
@@ -530,7 +607,7 @@ footer
 }
 
 /* Album */
-.album
+/* .album
 {
     width: 250px;
     height: 250px;
@@ -538,23 +615,75 @@ footer
     padding: 0;
     margin: 10px;
 
-}
+    border-radius: 15px;
+
+} */
 
 .album_image
 {
-    width: 200px;
-    height: 200px;
+    width: 90%;
+    height: auto;
     border-radius: 10px;
 }
 
-.add
+.dropbtn 
 {
-    height: 120px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.fixed_btn
+ {
+    position: fixed;
+    bottom: 25px;
+    right: 30px;
+ }
+
+.round_btn
+{
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+}
+
+.auto_btn
+{
+    border-radius: 50px;
+    height: 50px;
     width: auto;
 
-    font-size: 150px;
-    color: rgb(0, 130, 185);
+    padding: 5px 15px;
+}
 
-    padding: 0;
-    margin: 0;
+.white_btn
+{
+    background-color: white;
+    color: black;
+}
+.white_btn:hover
+{
+    background-color: rgb(245, 245, 245);
+}
+
+.red_btn
+{
+    background-color: #ef473a;
+    color: white;
+}
+.red_btn:hover
+{
+    background-color: #cb2d3e;
+}
+
+/* Položky v flexbox */
+.item_4
+{
+    display: inline-block;
+    margin: 5px;        
+    height: auto;
+    width: calc(100% * (1/4) - 10px - 1px);
 }
