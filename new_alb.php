@@ -1,3 +1,7 @@
+<?php
+require 'db_album.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +15,6 @@
 
 <body class="back_red align_center justify_center">
 
-<?php
-require 'db_album.php';
-?>
 
 <div class="card">
     <div class="card_item shadow card_line">
@@ -22,16 +23,12 @@ require 'db_album.php';
             <div class=" column">
                 <input type="text" name="name" id="name" class="form_text" placeholder="Název alba">
 
-                <!-- <div class="mt-2 ">
-                    <label for="file" class="form_file text_center align_center justify_center"> Vlož obrázky</label>
-                    <input type="file" name="files[]" id="file" multiple>
-                    
-                </div>
-
-                <p class="gray mt-1">Vložené obrázky:</p>
-                <div class="mt-1">
-                    <div id="preview" class="preview"></div>
-                </div> -->
+                <?php
+                    if(isset($_GET['error']))
+                    {
+                        echo '<div class = "warning">'.$_GET['error'].'</div>';
+                    }
+                ?>
                 
                 <div class="mt-2 space_between half_width align_center">
                     <span>Veřejný</span>

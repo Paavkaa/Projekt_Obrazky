@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require 'funkce.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,11 +20,19 @@
         </div>
     </header>
 
+    <div class="wrap">
+     <div>
+        <?php
+
+        ?>
+     </div>
+
+    </div>
 
     <?php
-        require 'funkce.php';
+        
         nav();
-        foot();
+        /* foot(); */
     ?>
 </body>
 </html>

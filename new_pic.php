@@ -1,3 +1,8 @@
+<?php
+require 'db_pic.php';
+$ID_alb = $_GET['id'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +16,6 @@
 
 <body class="back_red align_center justify_center">
 
-<?php
-require 'db_pic.php';
-$ID_alb = $_GET['id'];
-
-?>
 
 <div class="card">
     <div class="card_item shadow card_line">
@@ -28,6 +28,15 @@ $ID_alb = $_GET['id'];
                     <input type="file" name="file[]" id="file" multiple>
                     
                 </div>
+
+                <?php
+                    if (isset($_GET['error1'])) {
+                        echo '<div class="warning">'.$_GET['error1'].'</div>';
+                    }
+                    if (isset($_GET['error2'])) {
+                        echo '<div class="warning">'.$_GET['error2'].'</div>';
+                    }
+                ?>
 
                 <p class="gray mt-1">Vložené obrázky:</p>
                 <div class="mt-1">
@@ -45,6 +54,35 @@ $ID_alb = $_GET['id'];
     </div>
 </div>
     
-<script src="script.js"></script>
+<script>
+    function previewImages() {
+    var preview = document.querySelector('#preview');
+    if (this.files) {
+      [].forEach.call(this.files, readAndPreview);
+    }
+  
+    function readAndPreview(file) {
+      // Make sure `file.name` matches our extensions criteria
+      if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+        return alert(file.name + " není podporovaný formát obrázku");
+      } // else...
+  
+      var reader = new FileReader();
+  
+      reader.addEventListener("load", function() {
+        var image = new Image();
+        image.height = 100;
+        image.title  = file.name;
+        image.src    = this.result;
+        preview.appendChild(image);
+      });
+  
+      reader.readAsDataURL(file);
+    }
+  }
+  
+document.querySelector('#file').addEventListener("change", previewImages);
+</script>
+
 </body>
 </html>

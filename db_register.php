@@ -1,20 +1,16 @@
 <?php
-// Připojení k databázi pomocí mysqli
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "obrazky";
 
-// Vytvoření připojení
+$servername = "md200.wedos.net";
+$username = "a93646_pavelk";
+$password = "puquMcUe";
+$dbname = "d93646_pavelk";
+
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Kontrola připojení
 if (!$conn) {
-    die("Připojení se nezdařilo: " . mysqli_connect_error());
+die("Připojení se nezdařilo: " . mysqli_connect_error());
 }
-
-// Vložení údajů
-
 
 //! REGISTRACE UŽIVATELE
 if(isset($_POST['submit']))
@@ -25,14 +21,17 @@ if(isset($_POST['submit']))
     if ($result->num_rows > 0) 
     {
         $error_msg1 = "Přezdívka je již použitá!";
-        header("location: register.php?error1=$error_msg1");
-
+        $_SESSION['error1'] = $error_msg1;
+        header("location: register.php");
         exit();
-        /* die("přezdívka je již použita"); */
     }
     if (strlen($nickname) == 0) 
     {
-        die("přezdívka je prázdná");
+        $error_msg2 = "Přezdívka je prázdná!";
+        $error_msg2 = "Přezdívka je prázdná!";
+        $_SESSION['error1'] = $error_msg2;
+        header("location: register.php");
+        exit();
     }
 
     $email = $_POST['email'];
@@ -40,15 +39,20 @@ if(isset($_POST['submit']))
     $result = $conn->query($sql);
     if ($result->num_rows > 0) 
     {
-        $error_msg2 = "E-mail je již použitý!";
-        header("location: register.php?error2=$error_msg2");
+        $error_msg3 = "E-mail je již použitý!";
+    $_SESSION['error2'] = $error_msg3;
+    header("location: register.php");
+    exit();
 
-        exit();
-        /* die("e-mail je již použitý"); */
+
+
     } 
-    if (strlen($email) == 0) 
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
     {
-        die("e-mail je prázdný");
+        $error_msg4 = "Neplatný formát e-mailu!";
+        $_SESSION['error2'] = $error_msg4;
+        header("location: register.php");
+        exit();        
     }
     
     else 
@@ -59,20 +63,30 @@ if(isset($_POST['submit']))
          // Kontrola, zda se hesla shodují
         if ($password != $password_check) 
         {
-            $error_msg3 = "Hesla se neshodují!";
-            header("location: register.php?error3=$error_msg3");
+            $error_msg5 = "Hesla se neshodují!";
+            $_SESSION['error3'] = $error_msg5;
+            header("location: register.php");
+            exit();            
+
         }
     
         // Kontrola, zda heslo splňuje minimální délku
         if (strlen($password) < 8) 
         {
-            die("heslo je příliš krátké");
+            $error_msg6 = "Heslo musí mít minimálně 8 znaků!";
+            $_SESSION['error3'] = $error_msg6;
+            header("location: register.php");
+            exit();            
+
         }
-        $checkbox = $_POST['checkbox'];
-        if($checkbox != "on")
+        //kontrola vyplnění checkboxu
+        if (!isset($_POST['checkbox'])) 
         {
-            $error_msg5 = "Musíš souhlasit s podmínkami!";
-            header("location: register.php?error5=$error_msg5");
+            $error_msg7 = "Musíte souhlasit s podmínkami!";
+            $_SESSION['error4'] = $error_msg7;
+            header("location: register.php");
+            exit();            
+
         }
         else
         {

@@ -687,3 +687,25 @@ footer
     height: auto;
     width: calc(100% * (1/4) - 10px - 1px);
 }
+
+.item_2
+{
+    display: inline-block;
+    height: auto;
+    width: calc(100%*(1/2) - 10px -1px);
+}
+
+.item_6
+{
+    display: inline-block;
+    margin: 5px;
+    height: auto;
+    max-width: 16%;
+    width: calc(100%*(1/6) - 10px -1px);
+}
+
+.add
+{
+    width: 60%;
+    height: auto;
+}

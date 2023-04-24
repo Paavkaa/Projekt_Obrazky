@@ -1,5 +1,7 @@
 <?php
     require 'funkce.php';
+    require 'db_login.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +26,7 @@
 
     <div class="card">
         <div class="card_item">
-            <div class="">
+            <div>
                 <?php
                     album();
                 ?>

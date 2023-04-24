@@ -1,3 +1,14 @@
+<?php
+    require 'funkce.php';
+
+    $servername = "md200.wedos.net";
+    $username = "a93646_pavelk";
+    $password = "puquMcUe";
+    $dbname = "d93646_pavelk";
+
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,14 +20,13 @@
 </head>
 <body>
     <?php
-        require 'funkce.php';
         $ID_alb = $_GET['id'];
         
         $sql = "SELECT * FROM album WHERE ID_alb = $ID_alb";
-        $result1 = mysqli_query($GLOBALS['conn'], $sql);
+        $result1 = mysqli_query($conn, $sql);
         
         $sql = "SELECT * FROM picture WHERE ID_alb = $ID_alb";
-        $result2 = mysqli_query($GLOBALS['conn'], $sql);
+        $result2 = mysqli_query($conn, $sql);
 
         $nazev_alb = mysqli_fetch_assoc($result1);
         $nazev_alb = $nazev_alb['nazev_alb'];
@@ -24,8 +34,8 @@
         $img_path = "./users/" . $_SESSION['nickname'] . "/";
 
     ?>
-    <header class="circle1 align_center">
-        <div class="circle2 ml_5">
+    <header class="circle1 align_center justify_center">
+        <div class="circle2 text_center">
             <?php
                     echo '<h2 class="text_center">' . $nazev_alb . '</h2>';
             ?>
@@ -56,26 +66,30 @@
     <div class="card">
         <div class="card_item">
             <h3 class="size_40">Obrázky</h3>
+            <div class="wrap">
             <?php
                 //výpis obrázků
                 while($row = mysqli_fetch_assoc($result2)) {
                     if($row['ID_alb'] == $ID_alb)
-                    echo '<img class="album" src="'. $img_path . $row['nazev_pic'] .'" alt="">';
+                    echo '<img class="inline-flex item_6 angle20" src="'. $img_path . $row['nazev_pic'] .'" alt="">';
                 }
 
                 //přidání nového obrázku
                 echo '
-                <a href="new_pic.php?id=' . $ID_alb . '" class="no_decoration album back_white align_center justify_center column">
-                <p class="add align_center" >+</p>
+                <a href="new_pic.php?id=' . $ID_alb . '" class="no_decoration inline-flex item_4">
+                 <div class="justify_center align_center column">
+                <img src="img/plus.svg" class="item_4 add" alt="add" id="svgImg">
                 <h3 class="text_center">Nové foto</h3>
-                </a> ';
+                </div>
+                </a>';
             ?>
+            </div>
         
         </div>
     </div>
 
     <?php
-        foot();
+       /*  foot(); */
     ?>
     <script src="script.js"></script>
 </body>

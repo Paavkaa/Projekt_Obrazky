@@ -1,3 +1,8 @@
+<?php
+    require 'db_login.php';
+    require 'funkce.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="back-red">
 <head>
@@ -8,11 +13,6 @@
     <title>Document</title>
 </head>
 
-<?php
-
-    require 'db_login.php';
-    require 'funkce.php';
-?>
 
 <body class="back_red align_center justify_center">
     <div class="card">

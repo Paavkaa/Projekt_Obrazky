@@ -1,3 +1,15 @@
+<?php
+    require 'funkce.php';
+    require 'db_setting.php';
+
+    $servername = "md200.wedos.net";
+    $username = "a93646_pavelk";
+    $password = "puquMcUe";
+    $dbname = "d93646_pavelk";
+
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +22,6 @@
 </head>
 <body class="back_red align_center justify_center">
     <?php
-        require 'funkce.php';
         nav();
 
         $ID_alb = $_GET['id'];
@@ -27,15 +38,21 @@
             <h2>Nastavení alba</h2>
             <form action="" method="post">
                 <input type="text" class="form_text" name="rename" id="rename" placeholder="Přejmenuj album">
+                <?php
+                    if(isset($_GET['error']))
+                    {
+                        echo '<div class="warning">'.$_GET['error'].'</div>';
+                    }
+                ?>
 
                 <div class="mt-2 space_between half_width align_center">
                     <span>Veřejný</span>
                     <label class="switch" for="checkbox">
                     <?php
                         if($public == 1){
-                            echo '<input type="checkbox" id="checkbox" checked />';
+                            echo '<input type="checkbox" name="checkbox" id="checkbox" checked />';
                         }else{
-                            echo '<input type="checkbox" id="checkbox" />';
+                            echo '<input type="checkbox" name="checkbox" id="checkbox" />';
                         }
                     ?>
                     <div class="slider round"></div>
@@ -43,7 +60,7 @@
                 </div>
 
                 <div class="border_red mt-8 column">
-                    <input type="button" class="red_btn auto_btn border_none p1" value="Smazat">
+                    <input type="submit" name="delete" class="red_btn auto_btn border_none p1" value="Smazat">
                     <p class="warning">Pozor, tahle akce smaže celé album. Krok nelze vzít zpět</p>
                 </div>
 

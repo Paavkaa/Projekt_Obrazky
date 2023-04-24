@@ -1,3 +1,8 @@
+<?php
+require 'funkce.php';
+require 'db_register.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +13,6 @@
     <title>Document</title>
 </head>
 
-<?php
-
-    require 'db_register.php';
-    require 'funkce.php';
-?>
-
 <body class="back_red align_center justify_center">
     <div class="card">
         <div class="card_item shadow card_line">
@@ -21,18 +20,20 @@
             <form action="" class="column" method="post">
                 <input class="form_text" type="text" id="username" name="username" placeholder="Přezdívka" autofocus>
                 <?php
-                        if (isset($_GET['error1'])) 
+                        if(isset($_SESSION['error1']))
                         {
-                            echo '<div class="warning">' . $_GET['error1'] . '</div>';
+                            echo '<div class="warning">'.$_SESSION['error1'].'</div>';
+                            unset($_SESSION['error1']);
                         }
                 ?>
                 <div style="display:none" class="warning" id="usernameError">Zadej přezdívku</div>
                 
                 <input class="mt-2 form_text" type="text" id="email" name="email" placeholder="E-mail">
                 <?php
-                    if (isset($_GET['error2'])) 
+                    if(isset($_SESSION['error2']))
                     {
-                        echo '<div class="warning">' . $_GET['error2'] . '</div>';
+                        echo '<div class="warning">'.$_SESSION['error2'].'</div>';
+                        unset($_SESSION['error2']);
                     }
                 ?>
                 <div style="display:none;" class="warning" id="mailError">Neplatný email</div>
@@ -43,9 +44,10 @@
                 <input class="mt-2 form_text" type="password" id="password2" name="password2" placeholder="Zadej znovu heslo">
                 <div style="display: none;" class="warning" id="passwordMatchError">Hesla se neshodují</div>
                 <?php
-                    if (isset($_GET['error3'])) 
+                    if(isset($_SESSION['error3']))
                     {
-                        echo '<div class="warning">' . $_GET['error3'] . '</div>';
+                        echo '<div class="warning">'.$_SESSION['error3'].'</div>';
+                        unset($_SESSION['error3']);
                     }
                 ?>
 
@@ -55,13 +57,14 @@
                         <label >Souhlasím s podmínkami</label>
                         <input class="form_check" type="checkbox" id="checkbox" name="checkbox">
                     </div>
+                    <?php
+                        if(isset($_SESSION['error4']))
+                        {
+                            echo '<div class="warning">'.$_SESSION['error4'].'</div>';
+                            unset($_SESSION['error4']);
+                        }
+                    ?>
                 </div>
-                <?php
-                    if (isset($_GET['error5'])) 
-                    {
-                        echo '<div class="warning">' . $_GET['error5'] . '</div>';
-                    }
-                ?>
 
                 <div class="text_center">
                     <input class="mt-5 form_submit big_submit shadow" type="submit" id="register" name="submit" value="Registrovat">
@@ -79,7 +82,7 @@
     <script src="script.js"></script>
     <?php
         nav();
-        foot();
+        /* foot(); */
     ?>
 
 

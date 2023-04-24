@@ -1,18 +1,16 @@
 <?php
-// Připojení k databázi pomocí mysqli
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "obrazky";
 
-// Vytvoření připojení
+$servername = "md200.wedos.net";
+$username = "a93646_pavelk";
+$password = "puquMcUe";
+$dbname = "d93646_pavelk";
+
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Kontrola připojení
 if (!$conn) {
-    die("Připojení se nezdařilo: " . mysqli_connect_error());
+die("Připojení se nezdařilo: " . mysqli_connect_error());
 }
-
 
 if(isset($_POST['submit']))
 {
@@ -38,7 +36,7 @@ if(isset($_POST['submit']))
         }
         else
         {
-            $error_msg2 = "Špatné heslo!";
+            $error_msg2 = "Špatné heslo, nebo přezdívka!";
             header("location: login.php?error2=$error_msg2");
         }
     }
