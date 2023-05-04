@@ -96,7 +96,6 @@ function checkPasswordMatch()
     }
 }
 
-
 document.getElementById("username").addEventListener("blur", function() {
     checkUsername();
 });

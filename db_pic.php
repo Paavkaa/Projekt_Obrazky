@@ -34,7 +34,7 @@ if (isset($_POST['submit']))
         $fileDestination = './users/'. $_SESSION['nickname'] .'/'.$fileName;
 
         /* Kontrola, zda soubor již existuje */
-        if (file_exists($fileDestination)) 
+        if (file_exists($fileName)) 
         {
             $error_msg1 = "Soubor s tímto názvem již existuje.";
             header("location: new_pic.php?id=$ID_alb&error1=$error_msg1");
@@ -74,9 +74,9 @@ if (isset($_POST['submit']))
                 } 
                 
             }
-        }
+    }
 
-       /*  header("location: album.php?id=$ID_alb"); */
+     header("location: album.php?id=$ID_alb");
         
 }
 

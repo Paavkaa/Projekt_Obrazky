@@ -13,8 +13,8 @@
     <title>Document</title>
 </head>
 <body>
-    <header class="circle1 align_center">
-        <div class="circle2 ml_5">
+    <header class="slanted align_center">
+        <div class="ml_5">
             <?php
                     echo '<h2 class="text_center">Přihlášen jako ' . $_SESSION['nickname'] . '</h2>';
             ?>
@@ -25,8 +25,9 @@
     ?>
 
     <div class="card">
-        <div class="card_item">
-            <div>
+        <div class="card_album">
+            <div class="column align_center justify_center">
+            <h3 class="size_40">Alba</h3>
                 <?php
                     album();
                 ?>

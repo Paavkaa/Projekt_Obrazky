@@ -102,7 +102,15 @@ if(isset($_POST['submit']))
             $sql = "INSERT INTO user (nickname, mail, password) VALUES ('$nickname', '$email', '$hashed_password')";
             if ($conn->query($sql) === TRUE) 
             {
-                echo '<script>alert("Registrace proběhla úspěšně!");</script>'; // Zobrazení zprávy o úspěšné registraci
+                $sql = "SELECT * FROM user WHERE nickname = '$nickname'";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+
+                session_start();
+                $_SESSION['ID_user'] = $row['ID_user'];
+                $_SESSION['nickname'] = $nickname;
+                header("location: user.php");
+                exit();
             } 
             else 
             {

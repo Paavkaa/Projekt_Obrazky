@@ -15,7 +15,7 @@ require 'db_register.php';
 
 <body class="back_red align_center justify_center">
     <div class="card">
-        <div class="card_item shadow card_line">
+        <div class="card_form shadow card_line">
             <h2 class="text_center">Registrace</h2>
             <form action="" class="column" method="post">
                 <input class="form_text" type="text" id="username" name="username" placeholder="Přezdívka" autofocus>
@@ -66,6 +66,7 @@ require 'db_register.php';
                     ?>
                 </div>
 
+
                 <div class="text_center">
                     <input class="mt-5 form_submit big_submit shadow" type="submit" id="register" name="submit" value="Registrovat">
                 </div>
@@ -78,7 +79,6 @@ require 'db_register.php';
         </div>
     </div>
 
-    
     <script src="script.js"></script>
     <?php
         nav();

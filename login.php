@@ -16,10 +16,10 @@
 
 <body class="back_red align_center justify_center">
     <div class="card">
-        <div class = "card_item shadow card_line mt-3" >
+        <div class = "card_form shadow card_line mt-3" >
             <h2 class="text_center">Přihlásit</h2>
             <form action="login.php" class="column" method="post">
-                <input class="form_text" type="text" name="username" id="username" placeholder="Přezdívka" autofocus>
+                <input class="form_text full_width" type="text" name="username" id="username" placeholder="Přezdívka" autofocus>
                 <div style="display:none" class="warning" id="usernameError">Zadej přezdívku</div>
                 <?php
                     if (isset($_GET['error1'])) 

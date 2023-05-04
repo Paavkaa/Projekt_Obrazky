@@ -17,7 +17,7 @@ require 'db_album.php';
 
 
 <div class="card">
-    <div class="card_item shadow card_line">
+    <div class="card_form shadow card_line">
         <h2>Vytvoř nové album</h2>
         <form action="db_album.php" class="column align_center justify_center" method="post" enctype="multipart/form-data">
             <div class=" column">

@@ -34,12 +34,10 @@
         $img_path = "./users/" . $_SESSION['nickname'] . "/";
 
     ?>
-    <header class="circle1 align_center justify_center">
-        <div class="circle2 text_center">
-            <?php
-                    echo '<h2 class="text_center">' . $nazev_alb . '</h2>';
-            ?>
-        </div>
+    <header class="slanted align_center justify_center">
+        <?php
+                echo '<h2 class="text_center">' . $nazev_alb . '</h2>';
+        ?>
     </header>
 
     <?php
@@ -64,33 +62,60 @@
 
     <!-- obrázky -->
     <div class="card">
-        <div class="card_item">
-            <h3 class="size_40">Obrázky</h3>
-            <div class="wrap">
+        <div class="card_album width1500">
+            <h3 class="size_40 ml_3">Obrázky</h3>
+            <div class="wrap justify_center">
             <?php
                 //výpis obrázků
                 while($row = mysqli_fetch_assoc($result2)) {
                     if($row['ID_alb'] == $ID_alb)
-                    echo '<img class="inline-flex item_6 angle20" src="'. $img_path . $row['nazev_pic'] .'" alt="">';
+                    echo '
+                    <div class="item_6">
+                        <img class="angle20 pic" src="'. $img_path . $row['nazev_pic'] .'" alt="obrazek">
+                    </div>
+                    ';
                 }
 
                 //přidání nového obrázku
                 echo '
-                <a href="new_pic.php?id=' . $ID_alb . '" class="no_decoration inline-flex item_4">
+                <a href="new_pic.php?id=' . $ID_alb . '" class="no_decoration inline-flex item_6 pic">
                  <div class="justify_center align_center column">
-                <img src="img/plus.svg" class="item_4 add" alt="add" id="svgImg">
+                <img src="img/plus.svg" class="add" alt="add" id="svgImg">
                 <h3 class="text_center">Nové foto</h3>
                 </div>
                 </a>';
+
+                
             ?>
-            </div>
-        
+            </div>        
         </div>
     </div>
 
-    <?php
-       /*  foot(); */
-    ?>
-    <script src="script.js"></script>
+    <!-- fullscreen img -->
+
+    <div class="fullscreen" style="display: none;">
+        <img id="fullscreen" src="" alt="obrazek">
+    </div>
+
+    <script>
+    document.querySelectorAll('.pic').forEach(item => {
+    item.addEventListener('click', event => {
+            const fullscreen = document.querySelector('.fullscreen');
+            fullscreen.style.display = 'block';
+            fullscreen.querySelector('img').src = item.src;
+            document.querySelector('body').style.overflow = 'hidden';
+            window.scrollTo(0, 0);
+        });
+    });
+
+    document.querySelector('.fullscreen').addEventListener('click', event => {
+        if (event.target === event.currentTarget) {
+            event.currentTarget.style.display = 'none';
+            document.querySelector('body').style.overflow = 'auto';
+        }
+    });
+
+        
+    </script>
 </body>
 </html>

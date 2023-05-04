@@ -11,8 +11,8 @@ echo'
     <nav class="back_black">
         <div class="menu">
             <a class="menu_item" href="index.php">Domů</a>
-            <a class="menu_item" href="#">Alba</a>
-            <a class="menu_item" href="#">Kategorie</a>
+            <a class="menu_item" href="public_alb.php">Alba</a>
+            <a class="menu_item" href="#">O nás</a>
         </div>';
 
 /*  echo '<div class = "right"> <div class = "menu search">
@@ -63,16 +63,30 @@ function album()
     $user = $_SESSION["ID_user"];
 
     echo'
-    <h3 class="size_40">Alba</h3>
     <div class="wrap">
         ';
         while($row = mysqli_fetch_assoc($result)) {
             if($row['ID_u'] == $user)
             {
+                $sql2 = "SELECT * FROM picture WHERE ID_alb = " . $row['ID_alb'] . " LIMIT 1"; //? zobrazuje první fotku alba
+                $result2 = mysqli_query($conn ,$sql2);
+                $row2 = mysqli_fetch_assoc($result2);
+
+                if(mysqli_num_rows($result2) == 0)
+                {
+                    $img_path = "./img/";
+                    $img = "album.svg";
+                }
+                else
+                {
+                    $img = $row2['nazev_pic'];
+                    $img_path = "./users/" . $_SESSION['nickname'] . "/";
+                }
+
                 echo'
                 <a href="album.php?id=' . $row['ID_alb'] . '" class="no_decoration item_4 inline-flex align_center"> 
-                <div class="shadow justify_center align_center column angle20">
-                <img src="img/chemie.png" class="album_image mt-2" alt="obrazek" id="pngImg">
+                <div class="shadow justify_center align_center column angle20 hiddenflow">
+                <img src="'.$img_path.$img.'" class="album_image mt-2" alt="obrazek" id="pngImg">
                 <h4 class="text_center">'. $row['nazev_alb'] .'</h4>
                 </div>
                 </a>
@@ -90,6 +104,53 @@ function album()
     </div>
 ';
     
+}
+
+function public_alb()
+{
+    $servername = "md200.wedos.net";
+    $username = "a93646_pavelk";
+    $password = "puquMcUe";
+    $dbname = "d93646_pavelk";
+
+    $conn = mysqli_connect($servername, $username, $password, $dbname); 
+
+    $sql = "SELECT * FROM album";
+    $result = mysqli_query($conn ,$sql);
+
+    echo'
+    <div class="wrap">
+        ';
+        while($row = mysqli_fetch_assoc($result)) {
+            if($row['public'] == 1)
+            {
+                $sql2 = "SELECT * FROM picture WHERE ID_alb = " . $row['ID_alb'] . " LIMIT 1"; //? zobrazuje první fotku alba
+                $result2 = mysqli_query($conn ,$sql2);
+                $row2 = mysqli_fetch_assoc($result2);
+
+                if(mysqli_num_rows($result2) == 0)
+                {
+                    $img_path = "./img/";
+                    $img = "album.svg";
+                }
+                else
+                {
+                    $img = $row2['nazev_pic'];
+                    $img_path = "./users/" . $_SESSION['nickname'] . "/";
+                }
+
+                echo'
+                <a href="album.php?id=' . $row['ID_alb'] . '" class="no_decoration item_4 inline-flex align_center"> 
+                <div class="shadow justify_center align_center column angle20 hiddenflow">
+                <img src="'.$img_path.$img.'" class="album_image mt-2" alt="obrazek" id="pngImg">
+                <h4 class="text_center">'. $row['nazev_alb'] .'</h4>
+                </div>
+                </a>';  
+
+
+            }
+        }
+        echo'</div>';
 }
 
 function login()

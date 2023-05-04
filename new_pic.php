@@ -18,7 +18,7 @@ $ID_alb = $_GET['id'];
 
 
 <div class="card">
-    <div class="card_item shadow card_line">
+    <div class="card_form shadow card_line">
         <h2>Přidej obrázky</h2>
         <form action="" class="column align_center justify_center" method="post" enctype="multipart/form-data">
             <div class=" column">

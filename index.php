@@ -13,11 +13,8 @@
     <title>Document</title>
 </head>
 <body>
-    <header class="circle1 align_center justify_center">
-        <div class="circle2 text_center">
-            <h1>Projekt OBRÁZKY</h1>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae nobis veritatis perferendis accusantium dolor aperiam.</p>
-        </div>
+    <header class="circle align_center justify_center">
+        <h1>Projekt OBRÁZKY</h1>
     </header>
 
     <div class="wrap">
