@@ -2,6 +2,7 @@
     require 'funkce.php';
     require 'db_login.php';
 
+    no_session();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,12 +27,10 @@
 
     <div class="card">
         <div class="card_album">
-            <div class="column align_center justify_center">
             <h3 class="size_40">Alba</h3>
-                <?php
-                    album();
-                ?>
-            </div>
+            <?php
+                album();
+            ?>
         </div>
     </div>
 

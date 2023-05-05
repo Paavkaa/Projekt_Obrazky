@@ -1,5 +1,8 @@
 <?php
 require 'db_pic.php';
+require 'funkce.php';
+
+no_session();
 $ID_alb = $_GET['id'];
 ?>
 
@@ -30,11 +33,8 @@ $ID_alb = $_GET['id'];
                 </div>
 
                 <?php
-                    if (isset($_GET['error1'])) {
-                        echo '<div class="warning">'.$_GET['error1'].'</div>';
-                    }
-                    if (isset($_GET['error2'])) {
-                        echo '<div class="warning">'.$_GET['error2'].'</div>';
+                    if (isset($_GET['error'])) {
+                        echo '<div class="warning">'.$_GET['error'].'</div>';
                     }
                 ?>
 

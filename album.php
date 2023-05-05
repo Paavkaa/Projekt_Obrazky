@@ -1,6 +1,8 @@
 <?php
     require 'funkce.php';
 
+    no_session();
+
     $servername = "md200.wedos.net";
     $username = "a93646_pavelk";
     $password = "puquMcUe";
@@ -28,10 +30,15 @@
         $sql = "SELECT * FROM picture WHERE ID_alb = $ID_alb";
         $result2 = mysqli_query($conn, $sql);
 
+        $sql3 = "SELECT * FROM user u JOIN album a ON u.ID_user = a.ID_u WHERE a.ID_alb = $ID_alb";
+        $result3 = mysqli_query($conn, $sql3);
+        $row3 = mysqli_fetch_assoc($result3);
+        $user = $row3['nickname'];
+
         $nazev_alb = mysqli_fetch_assoc($result1);
         $nazev_alb = $nazev_alb['nazev_alb'];
 
-        $img_path = "./users/" . $_SESSION['nickname'] . "/";
+        $img_path = "./users/" . $user . "/";
 
     ?>
     <header class="slanted align_center justify_center">
@@ -48,23 +55,37 @@
     <div class="justify_center mt-5">
         <div class="space_between">
         <?php
-            echo '<a href="new_pic.php?id='. $ID_alb .'" class="no_decoration  back_white align_center justify_center back_gray size_20 auto_btn">
+            if (isset($_SESSION['nickname']) && $user == $_SESSION['nickname']) 
+            {
+                echo '<a href="new_pic.php?id='. $ID_alb .'" class="no_decoration  back_white align_center justify_center back_gray size_20 auto_btn">
                 <p class="text_center">Nové foto</p>
-            </a>';
+                </a>';
         
-            echo '<a href="setting_alb.php?id='. $ID_alb .'" class="no_decoration back_white align_center justify_center back_gray auto_btn size_20 ml_3">Nastavení</a>';
-        ?>
+                echo '<a href="setting_alb.php?id='. $ID_alb .'" class="no_decoration back_white align_center justify_center back_gray auto_btn size_20 ml_3">Nastavení</a>';
+
+            }
+       ?>
         </div>
     </div>
 
     <!-- zpět -->
-    <a href="user.php" class="shadow no_select no_decoration round_btn fixed_btn white_btn align_center justify_center">Zpět</a>
+    <?php
+    if(isset($_SESSION['nickname']) && $user == $_SESSION['nickname'])
+    {
+        echo'<a href="user.php" class="shadow no_select no_decoration round_btn fixed_btn white_btn align_center justify_center">Zpět</a>';
+    }
+    else
+    {
+        echo'<a href="public_alb.php" class="shadow no_select no_decoration round_btn fixed_btn white_btn align_center justify_center">Zpět</a>';
+    }
+    ?>
+    
 
     <!-- obrázky -->
     <div class="card">
-        <div class="card_album width1500">
+        <div class="card_album width1500 justify_center column">
             <h3 class="size_40 ml_3">Obrázky</h3>
-            <div class="wrap justify_center">
+            <div class="wrap">
             <?php
                 //výpis obrázků
                 while($row = mysqli_fetch_assoc($result2)) {
@@ -77,14 +98,16 @@
                 }
 
                 //přidání nového obrázku
-                echo '
-                <a href="new_pic.php?id=' . $ID_alb . '" class="no_decoration inline-flex item_6 pic">
-                 <div class="justify_center align_center column">
-                <img src="img/plus.svg" class="add" alt="add" id="svgImg">
-                <h3 class="text_center">Nové foto</h3>
-                </div>
-                </a>';
-
+                if(isset($_SESSION['nickname']) && $user == $_SESSION['nickname'])
+                {
+                    echo '
+                        <a href="new_pic.php?id=' . $ID_alb . '" class="no_decoration inline-flex item_6 pic">
+                         <div class="justify_center align_center column">
+                        <img src="img/plus.svg" class="add" alt="add" id="svgImg">
+                        <h3 class="text_center">Nové foto</h3>
+                        </div>
+                        </a>';
+                }
                 
             ?>
             </div>        
@@ -104,7 +127,6 @@
             fullscreen.style.display = 'block';
             fullscreen.querySelector('img').src = item.src;
             document.querySelector('body').style.overflow = 'hidden';
-            window.scrollTo(0, 0);
         });
     });
 

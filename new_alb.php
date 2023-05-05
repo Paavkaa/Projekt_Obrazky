@@ -1,5 +1,8 @@
 <?php
 require 'db_album.php';
+require 'funkce.php';
+
+no_session();
 ?>
 
 <!DOCTYPE html>

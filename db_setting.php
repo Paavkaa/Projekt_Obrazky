@@ -24,7 +24,7 @@ if(isset($_POST['submit']))
         {
             $error_msg = "Název alba již existuje. Zvolte jiný název.";
             header("location: setting_alb.php?id=$ID_alb&error=$error_msg");
-            exit();
+            exit;
         }
     }
     else
@@ -56,6 +56,7 @@ if(isset($_POST['delete']))
     $sql = "DELETE FROM album WHERE ID_alb = '$ID_alb'";
     mysqli_query($conn, $sql);
     header("location: user.php");
+    exit;
 }
 
 

@@ -4,17 +4,32 @@ if(!isset($_SESSION))
     session_start();
 }
 
+function no_session()
+{
+    if(!isset($_SESSION["ID_user"])) {
+        header("Location: index.php");
+        exit();
+    }
+}
+
 function nav()
 {
 echo'
 <div class="absolute_top no_select">
     <nav class="back_black">
+    
+        <input type="checkbox" class="menu_checkbox" id="menu_checkbox">
+        <label for="menu_checkbox" class="menu_checkbox_icon">
+            <img src="./img/3lines.svg" alt="menu" id="svgImg">
+        </label>
+
         <div class="menu">
             <a class="menu_item" href="index.php">Domů</a>
             <a class="menu_item" href="public_alb.php">Alba</a>
             <a class="menu_item" href="#">O nás</a>
         </div>';
 
+//* Vyhledávání
 /*  echo '<div class = "right"> <div class = "menu search">
     <input class = " menu_text" type = "text" name = "search" placeholder = "Hledat">
     <input class = " menu_submit" type = "submit" name = "submit" value = "Ok">
@@ -36,7 +51,6 @@ echo'
         <a class="menu_item" href="register.php">Registrovat</a>
     </div>';
     }
-   
     echo '</nav> </div>';
 
 }
@@ -87,7 +101,7 @@ function album()
                 <a href="album.php?id=' . $row['ID_alb'] . '" class="no_decoration item_4 inline-flex align_center"> 
                 <div class="shadow justify_center align_center column angle20 hiddenflow">
                 <img src="'.$img_path.$img.'" class="album_image mt-2" alt="obrazek" id="pngImg">
-                <h4 class="text_center">'. $row['nazev_alb'] .'</h4>
+                <h4>'. $row['nazev_alb'] .'</h4>
                 </div>
                 </a>
             ';
@@ -115,42 +129,45 @@ function public_alb()
 
     $conn = mysqli_connect($servername, $username, $password, $dbname); 
 
-    $sql = "SELECT * FROM album";
+    $sql = "SELECT * FROM album ORDER BY ID_alb DESC";
     $result = mysqli_query($conn ,$sql);
 
     echo'
-    <div class="wrap">
-        ';
+    <div class="wrap">';
         while($row = mysqli_fetch_assoc($result)) {
-            if($row['public'] == 1)
-            {
-                $sql2 = "SELECT * FROM picture WHERE ID_alb = " . $row['ID_alb'] . " LIMIT 1"; //? zobrazuje první fotku alba
+            if($row['public'] == 1) {
+                // majitel alba
+                $sql2 = "SELECT * FROM user WHERE ID_user = " . $row['ID_u'];
                 $result2 = mysqli_query($conn ,$sql2);
                 $row2 = mysqli_fetch_assoc($result2);
+                $user = $row2['nickname'];
 
-                if(mysqli_num_rows($result2) == 0)
-                {
+                // náhled 
+                $sql3 = "SELECT * FROM picture WHERE ID_alb = " . $row['ID_alb'] . " LIMIT 1";
+                $result3 = mysqli_query($conn ,$sql3);
+                $row3 = mysqli_fetch_assoc($result3);
+
+                if(mysqli_num_rows($result3) == 0) {
                     $img_path = "./img/";
                     $img = "album.svg";
                 }
-                else
-                {
-                    $img = $row2['nazev_pic'];
-                    $img_path = "./users/" . $_SESSION['nickname'] . "/";
+                else {
+                    $img = $row3['nazev_pic'];
+                    $img_path = "./users/" .$user. "/";
                 }
 
-                echo'
+                echo '
                 <a href="album.php?id=' . $row['ID_alb'] . '" class="no_decoration item_4 inline-flex align_center"> 
-                <div class="shadow justify_center align_center column angle20 hiddenflow">
-                <img src="'.$img_path.$img.'" class="album_image mt-2" alt="obrazek" id="pngImg">
-                <h4 class="text_center">'. $row['nazev_alb'] .'</h4>
-                </div>
-                </a>';  
-
-
+                    <div class="shadow justify_center align_center column angle20 hiddenflow">
+                        <img src="'.$img_path.$img.'" class="album_image mt-2" alt="obrazek" id="pngImg">
+                        <h4 class=" mb-0">'. $row['nazev_alb'] .'</h4>
+                        <label class="right mr_1 mb-1 gray bold">Vytvořil: ' . $user . '</label>
+                    </div>
+                </a>';
             }
         }
-        echo'</div>';
+    echo'</div>';
+
 }
 
 function login()

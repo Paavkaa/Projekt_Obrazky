@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6, p, a, span, label
 
 h1
 {
-    font-size: 80px;
+    font-size: 8vh;
 }
 h2
 {
@@ -42,6 +42,11 @@ label
 {
     text-decoration: none;
     color: black;
+}
+
+.bold
+{
+    font-weight: bold;
 }
 
 .no_select
@@ -121,12 +126,18 @@ label
 {
     margin-bottom: 20px;
 }
-
+.mb-1
+{
+    margin-bottom: 10px;
+}
 .mb-5
 {
     margin-bottom: 50px;
 }
-
+.mb-0
+{
+    margin-bottom: 0px;
+}
 .ml_5
 {
     margin-left: 50px;
@@ -136,7 +147,10 @@ label
 {
     margin-left: 30px;
 }
-
+.mr_1
+{
+    margin-right: 10px;
+}
 .mlr_3
 {
     margin: 0px 30x;
@@ -165,8 +179,11 @@ label
 
 .wrap
 {
-    display: flex;
-    flex-flow: wrap;
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
 }
 
 .hiddenflow
@@ -232,6 +249,11 @@ label
 .text_center
 {
     text-align: center;
+}
+
+.text_right
+{
+    text-align: right;
 }
 
 /*card*/
@@ -316,6 +338,12 @@ label
 {
     height: inherit;
     height: 100%;
+}
+
+.width_90
+{
+    width: inherit;
+    width: 90%;
 }
 
 .width_80
@@ -532,7 +560,8 @@ label
 {
     position: relative;
     width: 100%;
-    height: 30vh;
+    min-height: 400px;
+    max-height: 500px;
 
     overflow:hidden;
 }
@@ -638,6 +667,64 @@ nav
 {
     background-color: black;
 }
+
+.menu_checkbox
+{
+    display: none;
+}
+
+.menu_checkbox_icon
+{
+    display: none;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+
+@media screen and (max-width: 1000px) {
+    nav
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu
+    {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+    }
+
+    .menu_item
+    {
+        height: auto;
+        padding: 10px;
+    }
+
+    .right
+    {
+        margin-left: 0;
+    }
+
+    .drop_menu
+    {
+        display: none;
+    }
+
+    .menu_checkbox:checked ~ .menu
+    {
+        display: block;
+    }
+
+    .menu_checkbox_icon
+    {
+        display: block;
+    }
+
+}
+
 
 .right
 {
@@ -865,7 +952,7 @@ footer
 .fullscreen
 {
     display: fixed;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     

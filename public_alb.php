@@ -20,22 +20,19 @@
 </head>
 <body>
 <header class="circle align_center justify_center column">
-    <h1 class=" mb-2">Alba</h1>
+    <h1 class=" mb-2">Veřejná alba</h1>
 </header>
-
-<div class="card">
+<?php
+    nav();
+?>
+    <div class="card">
         <div class="card_album">
-            <div class="column align_center justify_center">
-            <h3 class="size_40">Nejnovější veřejná</h3>
-                <?php
-                    public_alb();
-                ?>
-            </div>
+            <h3 class="size_40">Nejnovější alba</h3>
+            <?php
+                public_alb();
+            ?>
         </div>
     </div>
 
-<?php
-nav();
-?>
 </body>
 </html>

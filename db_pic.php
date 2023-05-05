@@ -22,8 +22,10 @@ if (isset($_POST['submit']))
     $count = count($_FILES['file']['name']);
     $ID_alb = $_GET['id'];
 
-    if (count($_FILES['file']['name']) == 0) {
-        echo "Chyba: nebyl vybrán žádný soubor pro nahrání.";
+    if(empty($_FILES['file']['name'][0]))
+    {
+        $error_msg1 = "Musíš vložit aspoň jeden obrázek.";
+        header("location: new_pic.php?id=$ID_alb&error=$error_msg1");
         exit;
     }
 
@@ -36,8 +38,9 @@ if (isset($_POST['submit']))
         /* Kontrola, zda soubor již existuje */
         if (file_exists($fileName)) 
         {
-            $error_msg1 = "Soubor s tímto názvem již existuje.";
-            header("location: new_pic.php?id=$ID_alb&error1=$error_msg1");
+            $error_msg2 = "Soubor s tímto názvem již existuje.";
+            header("location: new_pic.php?id=$ID_alb&error=$error_msg2");
+            exit;
         }
         else
         {
@@ -59,11 +62,11 @@ if (isset($_POST['submit']))
                     if (move_uploaded_file($fileTmpName, $fileDestination)) {
                         /* echo "Soubor byl úspěšně nahrán a uložen do složky './users/". $_SESSION['nickname'] ."'."; */
                     } else {
-                        $error_msg2 = "Soubor nebyl úspěšně nahrán na server.";
-                        header("location: new_pic.php?id=$ID_alb&error2=$error_msg2");
+                        $error_msg3 = "Soubor nebyl úspěšně nahrán na server.";
+                        header("location: new_pic.php?id=$ID_alb&error=$error_msg3");
                     }
                 } else {
-                    header("location: new_pic.php?id=$ID_alb&error2=$error_msg2");
+                    header("location: new_pic.php?id=$ID_alb&error=$error_msg3");
                 }
     
                 $sql = "INSERT INTO picture (nazev_pic, ID_alb) VALUES ('$fileName', '$ID_alb')";
