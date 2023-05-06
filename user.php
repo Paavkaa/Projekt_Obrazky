@@ -17,7 +17,7 @@
     <header class="slanted align_center">
         <div class="ml_5">
             <?php
-                    echo '<h2 class="text_center">Přihlášen jako ' . $_SESSION['nickname'] . '</h2>';
+                    echo '<h2 class="justify_center">Přihlášen jako ' . $_SESSION['nickname'] . '</h2>';
             ?>
         </div>
     </header>

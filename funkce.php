@@ -26,7 +26,6 @@ echo'
         <div class="menu">
             <a class="menu_item" href="index.php">Domů</a>
             <a class="menu_item" href="public_alb.php">Alba</a>
-            <a class="menu_item" href="#">O nás</a>
         </div>';
 
 //* Vyhledávání
@@ -36,10 +35,11 @@ echo'
     </div> </div>'; */
     if(isset($_SESSION["ID_user"])) {
     echo '<div class="menu drop_menu right">
-        <a class="menu_item" href="user.php">' . $_SESSION["nickname"] . '</a>
+        <input type="checkbox" class="drop_checkbox" id="drop_checkbox">
+        <label for="drop_checkbox" class="menu_item" href="user.php"><a class="menu_item disabled" href="user.php">' . $_SESSION["nickname"] . '</a></label>
         <div class="drop_content back_black">
             <a class="drop_item justify_center" href="user.php">Profil</a>
-            <a class="drop_item justify_center" href="user.php">Nastavení</a>
+            <a class="drop_item justify_center" href="setting_user.php">Nastavení</a>
             <a class="drop_item justify_center" href="logout.php" id="logout-btn">Odhlásit</a>
         </div>
     </div>';

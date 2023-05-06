@@ -27,6 +27,13 @@ h2
     font-size: 60px;
 }
 
+@media  screen and (max-width: 600px) {
+    h2
+    {
+        font-size: 40px;
+    }
+}
+
 label
 {
     font-size: 15px;
@@ -673,6 +680,11 @@ nav
     display: none;
 }
 
+.drop_checkbox
+{
+    display: none;
+}
+
 .menu_checkbox_icon
 {
     display: none;
@@ -683,7 +695,7 @@ nav
 }
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
     nav
     {
         flex-direction: column;
@@ -706,6 +718,16 @@ nav
     .right
     {
         margin-left: 0;
+    }
+
+    .disabled
+    {
+        pointer-events: none;
+    }
+
+    .drop_checkbox:checked ~ .drop_menu
+    {
+        display: block;
     }
 
     .drop_menu

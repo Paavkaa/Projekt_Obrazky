@@ -21,8 +21,8 @@ no_session();
 
 <div class="card">
     <div class="card_form shadow card_line">
-        <h2>Vytvoř nové album</h2>
-        <form action="db_album.php" class="column align_center justify_center" method="post" enctype="multipart/form-data">
+        <h2 class=" text_center">Vytvoř nové album</h2>
+        <form action="db_album.php" class="column justify_center" method="post" enctype="multipart/form-data">
             <div class=" column">
                 <input type="text" name="name" id="name" class="form_text" placeholder="Název alba">
 
@@ -33,7 +33,7 @@ no_session();
                     }
                 ?>
                 
-                <div class="mt-2 space_between half_width align_center">
+                <div class="mt-2 space_between align_center width_80">
                     <span>Veřejný</span>
                     <label class="switch" for="checkbox">
                     <input type="checkbox" id="checkbox" name="checkbox"/>
