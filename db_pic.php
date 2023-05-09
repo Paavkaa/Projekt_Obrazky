@@ -4,12 +4,8 @@ if(!isset($_SESSION))
     session_start(); 
 }
 
-$servername = "md200.wedos.net";
-$username = "a93646_pavelk";
-$password = "puquMcUe";
-$dbname = "d93646_pavelk";
+require 'connect.php';
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
 
     // Kontrola připojení
     if (!$conn) {
@@ -31,7 +27,7 @@ if (isset($_POST['submit']))
 
     for ($i=0; $i < $count; $i++) 
     { 
-        $fileName = $_FILES['file']['name'][$i];
+        $fileName =mysqli_real_escape_string($conn, $_FILES['file']['name'][$i]);
         $fileTmpName = $files['tmp_name'][$i];
         $fileDestination = './users/'. $_SESSION['nickname'] .'/'.$fileName;
 
@@ -69,13 +65,14 @@ if (isset($_POST['submit']))
                     header("location: new_pic.php?id=$ID_alb&error=$error_msg3");
                 }
     
-                $sql = "INSERT INTO picture (nazev_pic, ID_alb) VALUES ('$fileName', '$ID_alb')";
-    
-                if (!mysqli_query($conn, $sql)) 
-                {
-                   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                } 
-                
+                $sql = "INSERT INTO picture (nazev_pic, ID_alb) VALUES (?, ?)";
+                $stmt = mysqli_stmt_init($conn);
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    echo "SQL statement failed!";
+                } else {
+                    mysqli_stmt_bind_param($stmt, "si", $fileName, $ID_alb);
+                    mysqli_stmt_execute($stmt);
+                }
             }
     }
 

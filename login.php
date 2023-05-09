@@ -14,8 +14,12 @@
 </head>
 
 
-<body class="back_red align_center justify_center">
-    <div class="card">
+<body class="back_red">
+<div class="align_center justify_center">
+    <?php
+        nav();
+    ?>
+    <div class="container">
         <div class = "card_form shadow card_line mt-3" >
             <h2 class="text_center">Přihlásit</h2>
             <form action="login.php" class="column" method="post">
@@ -45,11 +49,11 @@
             </div>
         </div>
     </div>
-
+</div>
     <?php
-        nav();
-        /* foot(); */
+        foot();
     ?>
+
     <script src="script.js"></script>
 </body>
 </html>

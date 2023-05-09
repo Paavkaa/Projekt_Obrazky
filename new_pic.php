@@ -20,7 +20,7 @@ $ID_alb = $_GET['id'];
 <body class="back_red align_center justify_center">
 
 
-<div class="card">
+<div class="container">
     <div class="card_form shadow card_line">
         <h2>Přidej obrázky</h2>
         <form action="" class="column align_center justify_center" method="post" enctype="multipart/form-data">

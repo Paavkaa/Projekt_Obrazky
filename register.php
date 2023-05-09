@@ -13,8 +13,12 @@ require 'db_register.php';
     <title>Document</title>
 </head>
 
-<body class="back_red align_center justify_center">
-    <div class="card">
+<body class="back_red">
+<div class="align_center justify_center">
+    <?php
+        nav();
+    ?>
+    <div class="container">
         <div class="card_form shadow card_line">
             <h2 class="text_center">Registrace</h2>
             <form action="" class="column" method="post">
@@ -78,13 +82,11 @@ require 'db_register.php';
 
         </div>
     </div>
+</div>
 
-    <script src="script.js"></script>
     <?php
-        nav();
-        /* foot(); */
+        foot();
     ?>
-
-
+    <script src="script.js"></script>
 </body>
 </html>

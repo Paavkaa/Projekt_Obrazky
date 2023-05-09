@@ -1,15 +1,10 @@
 <?php
+require 'connect.php';
+
 if(!isset($_SESSION)) 
 {
     session_start();
 }
-
-$servername = "md200.wedos.net";
-$username = "a93646_pavelk";
-$password = "puquMcUe";
-$dbname = "d93646_pavelk";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Kontrola připojení
 if (!$conn) {
@@ -19,44 +14,57 @@ die("Připojení se nezdařilo: " . mysqli_connect_error());
 //! VYTVOŘENÍ ALBA
 if (isset($_POST['submit'])) 
 {
-    $name = $_POST['name'];
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
     $ID_user = $_SESSION['ID_user'];
     $public = 0;
-    $sql = "SELECT * FROM album WHERE nazev_alb = '$name' AND ID_u = '$ID_user'";
-    $result = $conn->query($sql);
-
-    if (isset($_POST['checkbox'])) 
+    $sql = "SELECT * FROM album WHERE nazev_alb = ? AND ID_u = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) 
     {
-        $public = 1;
+        echo "SQL statement failed";
     }
     else
     {
-        $public = 0;
-    }
+        mysqli_stmt_bind_param($stmt, "si", $name, $ID_user);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-    if (empty($name)) 
-    {
-        $error_msg1 = "Název alba je prázdný!";
-        header("location: new_alb.php?error=$error_msg1");
-        exit();
-    }
-    if ($result->num_rows > 0) 
-    {
-        $error_msg2 = "Název alba je již použitý!";
-        header("location: new_alb.php?error=$error_msg2");
-        exit();
-    }
-    else
-    {
-        $sql = "INSERT INTO album (nazev_alb, ID_u, public) VALUES ('$name', '$ID_user', '$public')";
-        
-        if (mysqli_query($conn, $sql)) 
+        if (isset($_POST['checkbox'])) 
         {
+            $public = 1;
+        }
+        else
+        {
+            $public = 0;
+        }
+    
+        if (empty($name)) 
+        {
+            $error_msg1 = "Název alba je prázdný!";
+            header("location: new_alb.php?error=$error_msg1");
+            exit();
+        }
+        if ($result->num_rows > 0) 
+        {
+            $error_msg2 = "Název alba je již použitý!";
+            header("location: new_alb.php?error=$error_msg2");
+            exit();
+        }
+        else
+        {
+            $sql = "INSERT INTO album (nazev_alb, ID_u, public) VALUES (?, ?, ?)";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql)) 
+            {
+                echo "SQL statement failed";
+            }
+            else
+            {
+                mysqli_stmt_bind_param($stmt, "sii", $name, $ID_user, $public);
+                mysqli_stmt_execute($stmt);
+            }
+            mysqli_stmt_close($stmt);
             header("location: user.php");
-        } 
-        else 
-        {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
     }
     

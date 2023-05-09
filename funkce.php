@@ -12,6 +12,22 @@ function no_session()
     }
 }
 
+
+//! Nefunguje
+function no_alb()
+{
+    require 'connect.php';
+
+    $sql = "SELECT * FROM album";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    if(!isset($_SESSION["ID_user"]) || $_SESSION['ID_user'] != $row['ID_u'] && $row['public'] == 0) {
+        header("Location: index.php");
+        exit();
+    }
+}
+
 function nav()
 {
 echo'
@@ -59,7 +75,7 @@ function foot()
 {
     echo'
     <footer>
-            <p> &copy; 2023 - Všechna práva vyhrazena </p>
+            <p class="ml_3"> &copy; 2023 - Všechna práva vyhrazena </p>
     </footer>';
 }
 
@@ -160,8 +176,8 @@ function public_alb()
                 <a href="album.php?id=' . $row['ID_alb'] . '" class="no_decoration item_4 inline-flex align_center"> 
                     <div class="shadow justify_center align_center column angle20 hiddenflow">
                         <img src="'.$img_path.$img.'" class="album_image mt-2" alt="obrazek" id="pngImg">
-                        <h4 class=" mb-0">'. $row['nazev_alb'] .'</h4>
-                        <label class="right mr_1 mb-1 gray bold">Vytvořil: ' . $user . '</label>
+                        <h4 class=" mb-0">'. htmlspecialchars($row['nazev_alb']) .'</h4>
+                        <label class="right mr_1 mb-1 gray bold">Vytvořil: ' . htmlspecialchars($user) . '</label>
                     </div>
                 </a>';
             }
@@ -173,7 +189,7 @@ function public_alb()
 function login()
 {
     echo'
-    <div class="card">
+    <div class="container">
     <div class = "card_item shadow card_line mt-3" >
         <h2 class="text_center">Přihlásit</h2>
         <form action="login.php" class="column" method="post">
@@ -206,7 +222,7 @@ function login()
 
 function register()
 {
-   echo '<div class="card">
+   echo '<div class="container">
         <div class="card_item shadow card_line">
             <h2 class="text_center">Registrace</h2>
             <form action="" class="column" method="post">

@@ -19,7 +19,7 @@ no_session();
 <body class="back_red align_center justify_center">
 
 
-<div class="card">
+<div class="container">
     <div class="card_form shadow card_line">
         <h2 class=" text_center">Vytvoř nové album</h2>
         <form action="db_album.php" class="column justify_center" method="post" enctype="multipart/form-data">
@@ -42,7 +42,6 @@ no_session();
                 </div>
 
             </div>
-
             <div class="space_between align_center full_width mt-2">
                 <a href="user.php" class="no_select link">Zpět</a>
                 <input type="submit" name="submit" class="form_submit shadow small_submit right" value="Vytvořit">

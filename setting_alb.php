@@ -30,18 +30,11 @@
         $row = mysqli_fetch_assoc($result);
         $public = $row['public'];        
     ?>
-    <div class="card  ">
+    <div class="container">
         <div class="card_form shadow card_line mt-3">
             <h2>Nastavení alba</h2>
             <form action="" method="post">
                 <input type="text" class="form_text" name="rename" id="rename" placeholder="Přejmenuj album">
-                <?php
-                    if(isset($_GET['error']))
-                    {
-                        echo '<div class="warning">'.$_GET['error'].'</div>';
-                    }
-                ?>
-
                 <div class="mt-2 space_between half_width align_center">
                     <span>Veřejný</span>
                     <label class="switch" for="checkbox">
@@ -57,18 +50,61 @@
                 </div>
 
                 <div class="border_red mt-8 column">
-                    <input type="submit" name="delete" class="red_btn auto_btn border_none p1" value="Smazat">
+                    <button onclick="show()" class="red_btn auto_btn border_none p1">Smazat</button>
                     <p class="warning">Pozor, tahle akce smaže celé album. Krok nelze vzít zpět</p>
                 </div>
+
+                <?php
+                    if(isset($_GET['error']))
+                    {
+                        echo '<div class="warning">'.$_GET['error'].'</div>';
+                    }
+                ?>
 
                 <div class="space_between align_center full_width mt-2">
                     <?php
                         echo '<a href="album.php?id='.$ID_alb.'" class="no_select link">Zpět</a>';
                     ?>
-                    <input type="submit" name="submit" class="form_submit shadow small_submit right" value="Uložit">
+                    <button onclick="show()" class="form_submit shadow small_submit right">Uložit</button>
+                </div>
+
+                <!-- //! DIV NA POTVRZENÍ NASTAVENÍ -->
+                <!-- Nefunguje zobrazování divů kdy mají, to vede k nepřebrání hesla a nadcházející chybě s kontrolou hesla OPRAVIT!!! -->
+                <div class="fullscreen" id="submit_win" style="display:none;">
+                    <div class="alert angle20 shadow align_center column">
+                        <h4 class="mt-2">Potvrď akci</h4>
+                        <input type="password" class="form_text" name="password" placeholder="Zadej aktuální heslo">
+                        <div class="space_between align_center full_width mt-2">
+                            <button onclick="hide()" class="">Zpět</button>
+                            <input type="submit" name="submit" class="form_submit shadow small_submit right" value="Potvrdit">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fullscreen" id="submit_win" style="display:none;">
+                    <div class="alert angle20 shadow align_center column">
+                        <h4 class="mt-2">Potvrď akci</h4>
+                        <input type="password" class="form_text" name="password" placeholder="Zadej aktuální heslo">
+                        <div class="space_between align_center full_width mt-2">
+                            <button onclick="hide()" class="">Zpět</button>
+                            <input type="submit" name="delete" class="form_submit shadow small_submit right" value="Potvrdit">
+                        </div>
+                    </div>
+                </div>
+                
             </form>
 
         </div>
     </div>
+
+    <script>
+        function show(){
+            event.preventDefault();
+            document.getElementById('submit_win').style.display = "block";
+        }
+        function hide(){
+            document.getElementById('submit_win').style.display = "none";
+        }
+    </script>
 </body>
 </html>

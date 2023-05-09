@@ -1,14 +1,6 @@
 <?php
     require 'funkce.php';
-
-    no_session();
-
-    $servername = "md200.wedos.net";
-    $username = "a93646_pavelk";
-    $password = "puquMcUe";
-    $dbname = "d93646_pavelk";
-
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    require 'connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +30,12 @@
         $nazev_alb = mysqli_fetch_assoc($result1);
         $nazev_alb = $nazev_alb['nazev_alb'];
 
-        $img_path = "./users/" . $user . "/";
+        $img_path = "./users/" . htmlspecialchars($user) . "/";
 
     ?>
     <header class="slanted align_center justify_center">
         <?php
-                echo '<h2 class="text_center">' . $nazev_alb . '</h2>';
+                echo '<h2 class="text_center">' . htmlspecialchars($nazev_alb) . '</h2>';
         ?>
     </header>
 
@@ -82,7 +74,7 @@
     
 
     <!-- obrázky -->
-    <div class="card">
+    <div class="container">
         <div class="card_album width1500 justify_center column">
             <h3 class="size_40 ml_3">Obrázky</h3>
             <div class="wrap">
@@ -92,7 +84,7 @@
                     if($row['ID_alb'] == $ID_alb)
                     echo '
                     <div class="item_6">
-                        <img class="angle20 pic" src="'. $img_path . $row['nazev_pic'] .'" alt="obrazek">
+                        <img class="angle20 pic" src="'. $img_path . htmlspecialchars($row['nazev_pic']) .'" alt="obrazek">
                     </div>
                     ';
                 }
@@ -119,6 +111,10 @@
     <div class="fullscreen" style="display: none;">
         <img id="fullscreen" src="" alt="obrazek">
     </div>
+    
+    <?php
+        foot();
+    ?>
 
     <script>
     document.querySelectorAll('.pic').forEach(item => {
@@ -137,7 +133,24 @@
         }
     });
 
-        
+    function adjustButtonPosition() 
+    {
+        const button = document.querySelector('.fixed_btn');
+        if (button) {
+          const windowHeight = window.innerHeight;
+          const scrollTop = window.scrollY || window.pageYOffset;
+          const pageHeight = document.body.scrollHeight;
+          if (scrollTop + windowHeight >= pageHeight) {
+            button.style.bottom = '55px';
+          } else {
+            button.style.bottom = '25px';
+          }
+        }
+    }
+
+    window.addEventListener('scroll', adjustButtonPosition);
+    window.addEventListener('resize', adjustButtonPosition);
+            
     </script>
 </body>
 </html>

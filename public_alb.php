@@ -25,7 +25,8 @@
 <?php
     nav();
 ?>
-    <div class="card">
+
+    <div class="container">
         <div class="card_album">
             <h3 class="size_40">Nejnovější alba</h3>
             <?php
@@ -34,5 +35,9 @@
         </div>
     </div>
 
+
+<?php
+    foot();
+?>
 </body>
 </html>

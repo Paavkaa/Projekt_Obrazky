@@ -25,7 +25,7 @@
         nav();    
     ?>
 
-    <div class="card  ">
+    <div class="container">
         <div class="card_form shadow card_line mt-3">
             <h2 class="mb-2">Nastavení</h2>
             <form class="mb-1" action="" method="post">
