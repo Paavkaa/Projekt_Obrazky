@@ -5,19 +5,26 @@ require 'connect.php';
 $ID_alb = $_GET['id'];
 
 $ID_user = $_SESSION['ID_user'];
-$sql = "SELECT * FROM user WHERE ID_user = '$ID_user'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
+$sql = "SELECT * FROM user WHERE ID_user = ?";
+$stmt = mysqli_stmt_init($conn);
+if(!mysqli_stmt_prepare($stmt, $sql))
+{
+    echo "Chyba". $sql . "<br>" . mysqli_error($conn);
+}
+else
+{
+    mysqli_stmt_bind_param($stmt, "i", $ID_user);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+}
 
 $password_db = $row['password'];
 
 //! NASATVENÍ ALBA
 if(isset($_POST['submit']))
 {
-    $password = $_POST['password'];
-
-    echo $password.'<br>';
-    echo $password_db;
+    $password =  $_POST['password_sub'];
 
     if(password_verify($password, $password_db))
     {
@@ -100,7 +107,7 @@ if(isset($_POST['submit']))
 
 if(isset($_POST['delete']))
 {
-    $password = $_POST['password'];
+    $password = $_POST['password_del'];
 
     if(password_verify($password, $password_db))
     {

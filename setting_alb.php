@@ -1,6 +1,6 @@
 <?php
-    require 'funkce.php';
     require 'db_setting.php';
+    require 'funkce.php';
 
     $servername = "md200.wedos.net";
     $username = "a93646_pavelk";
@@ -50,14 +50,14 @@
                 </div>
 
                 <div class="border_red mt-8 column">
-                    <button onclick="show()" class="red_btn auto_btn border_none p1">Smazat</button>
+                    <button onclick="show2()" class="red_btn auto_btn border_none p1">Smazat</button>
                     <p class="warning">Pozor, tahle akce smaže celé album. Krok nelze vzít zpět</p>
                 </div>
 
                 <?php
                     if(isset($_GET['error']))
                     {
-                        echo '<div class="warning">'.$_GET['error'].'</div>';
+                        echo '<div class="warning mt-1">'.$_GET['error'].'</div>';
                     }
                 ?>
 
@@ -65,28 +65,27 @@
                     <?php
                         echo '<a href="album.php?id='.$ID_alb.'" class="no_select link">Zpět</a>';
                     ?>
-                    <button onclick="show()" class="form_submit shadow small_submit right">Uložit</button>
+                    <button onclick="show1()" class="form_submit shadow small_submit right">Uložit</button>
                 </div>
 
                 <!-- //! DIV NA POTVRZENÍ NASTAVENÍ -->
-                <!-- Nefunguje zobrazování divů kdy mají, to vede k nepřebrání hesla a nadcházející chybě s kontrolou hesla OPRAVIT!!! -->
-                <div class="fullscreen" id="submit_win" style="display:none;">
+                <div class="fullscreen" id="submit_win1" style="display:none;">
                     <div class="alert angle20 shadow align_center column">
                         <h4 class="mt-2">Potvrď akci</h4>
-                        <input type="password" class="form_text" name="password" placeholder="Zadej aktuální heslo">
+                        <input type="password" class="form_text" name="password_sub" placeholder="Zadej aktuální heslo">
                         <div class="space_between align_center full_width mt-2">
-                            <button onclick="hide()" class="">Zpět</button>
+                            <button onclick="hide1()" class="">Zpět</button>
                             <input type="submit" name="submit" class="form_submit shadow small_submit right" value="Potvrdit">
                         </div>
                     </div>
                 </div>
 
-                <div class="fullscreen" id="submit_win" style="display:none;">
+                <div class="fullscreen" id="submit_win2" style="display:none;">
                     <div class="alert angle20 shadow align_center column">
                         <h4 class="mt-2">Potvrď akci</h4>
-                        <input type="password" class="form_text" name="password" placeholder="Zadej aktuální heslo">
+                        <input type="password" class="form_text" name="password_del" placeholder="Zadej aktuální heslo">
                         <div class="space_between align_center full_width mt-2">
-                            <button onclick="hide()" class="">Zpět</button>
+                            <button onclick="hide2()" class="">Zpět</button>
                             <input type="submit" name="delete" class="form_submit shadow small_submit right" value="Potvrdit">
                         </div>
                     </div>
@@ -98,12 +97,20 @@
     </div>
 
     <script>
-        function show(){
+        function show1(){
             event.preventDefault();
-            document.getElementById('submit_win').style.display = "block";
+            document.getElementById('submit_win1').style.display = "block";
         }
-        function hide(){
-            document.getElementById('submit_win').style.display = "none";
+        function hide1(){
+            document.getElementById('submit_win1').style.display = "none";
+        }
+
+        function show2(){
+            event.preventDefault();
+            document.getElementById('submit_win2').style.display = "block";
+        }
+        function hide2(){
+            document.getElementById('submit_win2').style.display = "none";
         }
     </script>
 </body>
