@@ -42,6 +42,7 @@ echo'
         <div class="menu">
             <a class="menu_item" href="index.php">Domů</a>
             <a class="menu_item" href="public_alb.php">Alba</a>
+            <a class="menu_item" href="shop.php">Prémium</a>
         </div>';
 
 //* Vyhledávání

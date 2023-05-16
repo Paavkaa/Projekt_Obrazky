@@ -283,7 +283,7 @@ label
 /*card*/
 .container
 {    
-    height: auto;
+    height: 100%;
     width: 100%;
 
     
@@ -355,6 +355,19 @@ label
     {
         width: 85%;
     }
+ }
+
+ .card_shop
+ {
+    display: flex;
+
+    background-color: rgb(245, 245, 245);
+    border-radius: 15px;
+    
+    padding: 10px 0px;
+    margin: 10px 0px;
+
+    width: 95%;
  }
 
 .preview
@@ -1003,9 +1016,17 @@ footer p
 }
 
 @media screen and (max-width: 600px) {
-    .item_4 {
+    .item_4, .item_2 {
         width: calc(100% - 10px - 1px);
     }
+}
+
+.item_5
+{
+    display: inline-block;
+    margin: 5px;        
+    height: auto;
+    width: calc(18% - 10px - 1px);
 }
 
 .item_2
@@ -1014,11 +1035,6 @@ footer p
     margin: 5px;        
     height: auto;
     width: calc(100% * (1/2) - 10px - 1px);
-}
-@media screen and (max-width: 1000px) {
-    .item_2 {
-        width: calc(100% - 10px - 1px);
-    }
 }
 
 .item_6

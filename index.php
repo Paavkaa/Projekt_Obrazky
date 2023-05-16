@@ -20,7 +20,7 @@
         nav();
     ?>
     
-    <div class="container full_vh align_start">
+    <div class="container">
         <div class="card back_white width_80 ">
 
             <div class="align_center space_between wrap">
