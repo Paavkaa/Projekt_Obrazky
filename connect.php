@@ -1,9 +1,9 @@
 <?php
 
-$servername = "md200.wedos.net";
-$username = "a93646_pavelk";
-$password = "puquMcUe";
-$dbname = "d93646_pavelk";
+$servername = "cock";
+$username = "cock";
+$password = "cock";
+$dbname = "cock";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
